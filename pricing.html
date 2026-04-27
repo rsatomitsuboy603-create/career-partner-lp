@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>料金 — キャリアパートナー</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#F0F8FA;--bg2:#E4F2F6;--bg3:#F8FCFD;
+  --deep:#0A3A44;--mid:#1A6070;
+  --accent:#2A9BB0;--accent-light:#7EC8D8;--accent-pale:#C8E8F0;
+  --text:#071C22;--text-mid:#1A3D4A;--text-light:#3A6878;
+  --line:rgba(42,155,176,0.15);
+  --teal:#3A9E94;--teal-light:#4ABFB0;--teal-pale:#D0F0EC;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;font-weight:400;overflow-x:hidden;line-height:1.8;}
+
+.ripple-canvas{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.4;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 8vw;display:flex;justify-content:space-between;align-items:center;background:rgba(240,248,250,0.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+.nav-logo{font-family:'Noto Serif JP',serif;font-size:14px;font-weight:400;color:var(--deep);letter-spacing:0.1em;text-decoration:none;white-space:nowrap;}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-link{font-size:12px;letter-spacing:0.06em;color:var(--text-light);text-decoration:none;transition:color 0.3s;white-space:nowrap;}
+.nav-link:hover,.nav-link.active{color:var(--accent);}
+.nav-cta{font-size:11px;letter-spacing:0.12em;color:var(--accent);border:1px solid var(--accent);padding:8px 18px;border-radius:20px;text-decoration:none;transition:all 0.3s;white-space:nowrap;}
+.nav-cta:hover{background:var(--accent);color:white;}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--accent);transition:all 0.3s;}
+.nav-mobile{display:none;position:fixed;top:57px;left:0;right:0;background:rgba(240,248,250,0.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:20px 8vw;z-index:99;flex-direction:column;gap:0;}
+.nav-mobile.open{display:flex;}
+.nav-mobile a{font-size:14px;color:var(--text-mid);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--line);letter-spacing:0.06em;transition:color 0.3s;}
+.nav-mobile a:last-child{border-bottom:none;}
+.nav-mobile a:hover{color:var(--accent);}
+.nav-mobile-cta{background:var(--accent);color:white!important;padding:14px 0;text-align:center;border-radius:4px;margin-top:12px;letter-spacing:0.1em!important;}
+@media(max-width:900px){.nav-links{display:none;}.nav-hamburger{display:flex;}}
+@media(max-width:600px){nav{padding:14px 5vw;}}
+
+.page-hero{padding:140px 8vw 80px;position:relative;z-index:1;}
+.page-tag{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:0.2em;color:var(--accent);margin-bottom:24px;opacity:0;animation:fadeUp 0.8s ease 0.3s forwards;}
+.page-tag::before{content:'';display:block;width:20px;height:1px;background:var(--accent);}
+.page-title{font-family:'Noto Serif JP',serif;font-weight:300;font-size:clamp(28px,3.5vw,44px);line-height:1.8;color:var(--deep);opacity:0;animation:fadeUp 1s ease 0.5s forwards;}
+.page-lead{font-size:15px;color:var(--text-mid);line-height:2;margin-top:20px;max-width:560px;opacity:0;animation:fadeUp 1s ease 0.7s forwards;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+section{position:relative;z-index:1;}
+.section-inner{padding:80px 8vw;border-top:1px solid var(--line);}
+.section-tag{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:0.2em;color:var(--accent);margin-bottom:24px;}
+.section-tag::before{content:'';display:block;width:20px;height:1px;background:var(--accent);}
+.section-title{font-family:'Noto Serif JP',serif;font-weight:300;font-size:clamp(22px,3vw,34px);line-height:1.8;color:var(--deep);margin-bottom:12px;}
+.section-lead{font-size:14px;color:var(--text-mid);line-height:2;margin-bottom:40px;max-width:600px;}
+
+/* カード共通 */
+.plan-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:48px;}
+@media(max-width:700px){.plan-grid{grid-template-columns:1fr;}}
+.plan-card{background:white;border:1.5px solid var(--accent-pale);border-radius:16px;padding:36px 32px;position:relative;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s;}
+.plan-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(42,155,176,0.12);}
+.plan-card.featured{border-color:var(--accent);border-width:2px;}
+.plan-badge{position:absolute;top:20px;right:20px;background:var(--accent);color:white;font-size:9px;letter-spacing:0.15em;padding:4px 12px;border-radius:20px;}
+.plan-label{font-size:10px;letter-spacing:0.2em;color:var(--accent);margin-bottom:8px;}
+.plan-label.teal{color:var(--teal);}
+.plan-name{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:400;color:var(--deep);margin-bottom:4px;}
+.plan-service{font-size:12px;color:var(--accent);margin-bottom:20px;}
+.plan-service.teal{color:var(--teal);}
+.plan-price-wrap{display:flex;align-items:baseline;gap:6px;margin-bottom:8px;}
+.plan-price{font-family:'Noto Serif JP',serif;font-size:36px;font-weight:300;color:var(--deep);}
+.plan-price-unit{font-size:13px;color:var(--text-light);}
+.plan-price-sub{font-size:11px;color:var(--text-light);margin-bottom:20px;}
+.plan-divider{width:32px;height:1px;background:var(--accent-pale);margin:20px 0;}
+.plan-features{list-style:none;}
+.plan-features li{font-size:13px;color:var(--text-mid);padding:6px 0;display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid var(--line);}
+.plan-features li:last-child{border-bottom:none;}
+.plan-features li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent-light);flex-shrink:0;margin-top:7px;}
+.plan-features li.teal-dot::before{background:var(--teal-light);}
+.plan-cta{margin-top:28px;}
+.btn-plan{display:block;text-align:center;font-size:12px;letter-spacing:0.1em;padding:13px 24px;border-radius:2px;text-decoration:none;transition:all 0.3s;}
+.btn-plan-primary{background:var(--accent);color:white;}
+.btn-plan-primary:hover{background:var(--mid);}
+.btn-plan-secondary{border:1px solid var(--accent);color:var(--accent);}
+.btn-plan-secondary:hover{background:var(--accent-pale);}
+.btn-plan-teal{background:var(--teal);color:white;}
+.btn-plan-teal:hover{background:#2A7A74;}
+
+/* セッション比較 */
+.session-compare{margin-top:48px;overflow-x:auto;}
+table{width:100%;border-collapse:collapse;min-width:480px;}
+thead th{padding:14px 16px;font-size:12px;font-weight:400;letter-spacing:0.05em;text-align:center;border-bottom:2px solid var(--line);color:var(--deep);}
+thead th:first-child{text-align:left;}
+thead th.hl{background:var(--accent);color:white;border-radius:4px 4px 0 0;}
+thead th.hl2{background:var(--teal);color:white;border-radius:4px 4px 0 0;}
+tbody tr{border-bottom:1px solid var(--line);}
+tbody tr:hover{background:rgba(42,155,176,0.02);}
+tbody td{padding:13px 16px;font-size:13px;color:var(--text-mid);text-align:center;vertical-align:middle;line-height:1.7;}
+tbody td:first-child{text-align:left;color:var(--text-light);font-size:12px;}
+tbody td.hl{background:rgba(42,155,176,0.04);}
+tbody td.hl2{background:rgba(58,158,148,0.04);}
+
+/* 注記 */
+.pricing-note{margin-top:32px;padding:20px 24px;background:var(--bg2);border-radius:10px;border-left:3px solid var(--accent-light);}
+.pricing-note p{font-size:12px;color:var(--text-light);line-height:1.9;}
+.pricing-note p+p{margin-top:4px;}
+
+/* CTA */
+.cta-section{background:var(--deep);padding:100px 8vw;text-align:center;position:relative;overflow:hidden;}
+.cta-ripple{position:absolute;border-radius:50%;border:1px solid rgba(126,200,216,0.15);pointer-events:none;animation:rippleExpand 8s ease-out infinite;}
+@keyframes rippleExpand{0%{transform:scale(0.3);opacity:0.5;}100%{transform:scale(3);opacity:0;}}
+.cta-title{font-family:'Noto Serif JP',serif;font-weight:300;font-size:clamp(22px,3.5vw,36px);color:white;line-height:1.8;margin-bottom:12px;position:relative;z-index:1;}
+.cta-sub{font-size:13px;color:var(--accent-light);margin-bottom:44px;position:relative;z-index:1;line-height:2;}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+.cta-btn-primary{background:var(--accent);color:white;font-size:13px;letter-spacing:0.1em;padding:14px 32px;border-radius:2px;text-decoration:none;transition:all 0.3s;}
+.cta-btn-primary:hover{background:var(--accent-light);}
+.cta-btn-secondary{border:1px solid rgba(126,200,216,0.5);color:var(--accent-light);font-size:13px;letter-spacing:0.1em;padding:14px 32px;border-radius:2px;text-decoration:none;transition:all 0.3s;}
+.cta-btn-secondary:hover{border-color:var(--accent-light);background:rgba(42,155,176,0.1);}
+
+footer{background:#061820;padding:28px 8vw;font-size:11px;color:rgba(126,200,216,0.3);letter-spacing:0.1em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+.footer-links a{color:rgba(126,200,216,0.3);text-decoration:none;transition:color 0.3s;}
+.footer-links a:hover{color:rgba(126,200,216,0.7);}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.9s ease,transform 0.9s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:768px){
+  .page-hero{padding:100px 6vw 60px;}
+  .section-inner{padding:60px 6vw;}
+  .plan-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<canvas class="ripple-canvas" id="rippleCanvas"></canvas>
+
+<nav>
+  <a class="nav-logo" href="index.html">キャリアパートナー</a>
+  <div class="nav-links">
+    <a class="nav-link" href="index.html#section-journey">キャリアパートナーとは</a>
+    <a class="nav-link active" href="pricing.html">料金</a>
+    <a class="nav-link" href="faq.html">よくある質問</a>
+    <a class="nav-link" href="https://careerpartner.jp/" target="_blank">運営会社</a>
+    <a class="nav-cta" href="https://carefle.vercel.app/" target="_blank">▶ まず無料診断してみる</a>
+  </div>
+  <div class="nav-hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html#section-journey">キャリアパートナーとは</a>
+  <a href="pricing.html">料金</a>
+  <a href="faq.html">よくある質問</a>
+  <a href="https://careerpartner.jp/" target="_blank">運営会社</a>
+  <a href="https://carefle.vercel.app/" target="_blank" class="nav-mobile-cta">▶ まず無料診断してみる</a>
+</div>
+
+<!-- ページヘッダー -->
+<div class="page-hero">
+  <div class="page-tag">PRICING — 料金</div>
+  <h1 class="page-title">料金について</h1>
+</div>
+
+<!-- キャリフレ料金 -->
+<section>
+  <div class="section-inner" style="background:var(--bg3);">
+    <div class="section-tag reveal">プロダクト — キャリフレ</div>
+    <h2 class="section-title reveal">キャリフレの料金</h2>
+
+    <div class="plan-grid reveal">
+      <!-- 無料プラン -->
+      <div class="plan-card">
+        <div class="plan-label">FREE</div>
+        <div class="plan-name">無料プラン</div>
+        <div class="plan-service">キャリフレ ベーシック</div>
+        <div class="plan-desc" style="font-size:12px;color:var(--text-mid);line-height:1.8;margin-bottom:16px;">基本機能で気軽に自分を理解・整理する</div>
+        <div class="plan-price-wrap">
+          <div class="plan-price">¥0</div>
+          <div class="plan-price-unit">/ ずっと無料</div>
+        </div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>キャリア満足度診断（5軸）</li>
+          <li>人生史</li>
+          <li>WCMシート</li>
+          <li>ゴール・マイルストーン設定</li>
+        </ul>
+        <div class="plan-cta">
+          <a class="btn-plan btn-plan-secondary" href="https://carefle.vercel.app/" target="_blank">無料で始める</a>
+        </div>
+      </div>
+
+      <!-- 有料プラン -->
+      <div class="plan-card featured">
+        <div class="plan-badge">おすすめ</div>
+        <div class="plan-label">STANDARD</div>
+        <div class="plan-name">有料プラン</div>
+        <div class="plan-service">キャリフレ フル機能</div>
+        <div class="plan-desc" style="font-size:12px;color:var(--text-mid);line-height:1.8;margin-bottom:16px;">記録・対話するたびに進化するAIが、<br>客観的なフィードバックであなたの自己理解と内省を深くサポート</div>
+        <div class="plan-price-wrap">
+          <div class="plan-price">¥980</div>
+          <div class="plan-price-unit">/ 月（税込）</div>
+        </div>
+        <div class="plan-price-sub">いつでも解約可能</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>無料プランのすべての機能</li>
+          <li>日記 — 毎日の気づきを記録</li>
+          <li>持ち味レポート — AIによる客観的フィードバック</li>
+        </ul>
+        <div class="plan-cta">
+          <a class="btn-plan btn-plan-primary" href="https://carefle.vercel.app/" target="_blank">有料プランで始める</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pricing-note reveal" style="margin-top:32px;">
+      <p>※ いつでも解約できます。解約後も、それまでのログ（記録）は保持されます。</p>
+      <p>※ 有料プランへのアップグレード・ダウングレードは、アカウント設定からいつでも変更可能です。</p>
+    </div>
+  </div>
+</section>
+
+<!-- セッション料金 -->
+<section>
+  <div class="section-inner">
+    <div class="section-tag reveal">ヒト — キャリフレセッション</div>
+    <h2 class="section-title reveal">セッションの料金</h2>
+
+    <div class="plan-grid reveal">
+      <!-- 単発 -->
+      <div class="plan-card">
+        <div class="plan-label teal">SINGLE SESSION</div>
+        <div class="plan-name">単発セッション</div>
+        <div class="plan-service teal">キャリフレセッション 単発</div>
+        <div class="plan-price-wrap">
+          <div class="plan-price">¥15,000</div>
+          <div class="plan-price-unit">/ 回（税込）</div>
+        </div>
+        <div class="plan-price-sub">約60分・オンライン</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li class="teal-dot">1対1の完全非公開セッション</li>
+          <li class="teal-dot">経験豊富なキャリアカウンセラーが担当</li>
+          <li class="teal-dot">回数の縛りなし、必要なときだけ</li>
+          <li class="teal-dot">キャリフレの記録と連携可能</li>
+        </ul>
+        <div class="plan-cta">
+        </div>
+      </div>
+
+      <!-- プログラム -->
+      <div class="plan-card">
+        <div class="plan-label teal">PROGRAM SESSION</div>
+        <div class="plan-name">プログラムセッション</div>
+        <div class="plan-service teal">キャリフレセッション 集中プログラム</div>
+        <div class="plan-price-wrap">
+          <div class="plan-price" style="font-size:28px;">¥150,000〜</div>
+          <div class="plan-price-unit">（税込）</div>
+        </div>
+        <div class="plan-price-sub">6〜8回・約60分/回 ※状況により増減あり</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li class="teal-dot">全6〜8回の継続プログラム</li>
+          <li class="teal-dot">自己理解から選択・行動まで伴走</li>
+          <li class="teal-dot">ご状況に応じてカスタマイズ</li>
+          <li class="teal-dot">キャリフレとの完全連携</li>
+          <li class="teal-dot">詳細はセッション前にご案内</li>
+        </ul>
+        <div class="plan-cta">
+        </div>
+      </div>
+    </div>
+
+    <!-- 比較表 -->
+    <div class="session-compare reveal" style="margin-top:56px;">
+      <p style="font-size:12px;color:var(--text-light);margin-bottom:16px;letter-spacing:0.05em;">— セッションプランの比較</p>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th class="hl2">単発</th>
+            <th class="hl2">プログラム</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>料金</td><td class="hl2">15,000円/回</td><td class="hl2">150,000〜円</td></tr>
+          <tr><td>回数</td><td class="hl2">都度</td><td class="hl2">6〜8回</td></tr>
+          <tr><td>時間</td><td class="hl2">約60分</td><td class="hl2">約60分×回数</td></tr>
+          <tr><td>形式</td><td class="hl2">オンライン</td><td class="hl2">オンライン</td></tr>
+          <tr><td>縛り</td><td class="hl2">なし</td><td class="hl2">プログラム単位</td></tr>
+          <tr><td>継続サポート</td><td class="hl2">△</td><td class="hl2">◎ 伴走型</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- セッション任意利用の説明 -->
+    <div class="reveal" style="margin-top:32px;padding:20px 28px;background:rgba(58,158,148,0.06);border-radius:12px;border-left:3px solid var(--teal);display:flex;align-items:flex-start;gap:14px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round" flex-shrink="0" style="flex-shrink:0;margin-top:2px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <div>
+        <div style="font-size:13px;font-weight:400;color:var(--deep);margin-bottom:6px;">セッションは任意です</div>
+        <div style="font-size:12px;color:var(--text-mid);line-height:1.9;">キャリフレを利用して、プロのカウンセラーと対話してさらに深めたいと感じた方のみ、任意でセッションをご利用いただけます。セッションの有無にかかわらず、キャリフレでの内省を継続できます。</div>
+      </div>
+    </div>
+
+    <div class="pricing-note reveal">
+      <p>※ 料金はすべて税込です。</p>
+      <p>※ プログラムセッションの詳細（回数・内容・金額）は、ご状況を伺いながらご案内します。</p>
+      <p>※ 求人紹介・特定サービスへの誘導は一切ありません。あなたの自己決定を支えることのみを目的としています。</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="cta-section">
+    <div class="cta-ripple" style="width:500px;height:500px;left:50%;top:50%;transform:translate(-50%,-50%);"></div>
+    <h2 class="cta-title">ありたい自分は、<br>立ち止まった先にいる。</h2>
+    <p class="cta-sub">内省を重ねるうちに、思考や気持ちのパターンが少しずつ見えてくる。<br>自分の心の声を知り、整え、より豊かな選択が出来る。そんな習慣を一緒に。</p>
+    <div class="cta-btns">
+      <a class="cta-btn-primary" href="https://carefle.vercel.app/" target="_blank">まず無料診断してみる</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 キャリアパートナー / Career Partner<br><small style="font-size:10px;letter-spacing:0.05em;color:var(--text-light);">本サービスはキャリア相談・自己理解支援を目的としたプログラムです。医療・法律・労務上の助言には該当しません。</small></span>
+  <div class="footer-links">
+    <a href="index.html#section-journey">キャリアパートナーとは</a>
+    <a href="pricing.html">料金</a>
+    <a href="faq.html">よくある質問</a>
+    <a href="contact.html">お問い合わせ</a>
+    <a href="#">プライバシーポリシー</a>
+    <a href="https://careerpartner.jp/" target="_blank">運営会社</a>
+    <a href="https://carefle.vercel.app/" target="_blank" style="color:var(--accent);border:1px solid var(--accent);padding:4px 12px;border-radius:16px;font-size:11px;">▶ まず無料診断</a>
+  </div>
+</footer>
+
+<script>
+const canvas = document.getElementById('rippleCanvas');
+const ctx = canvas.getContext('2d');
+let W, H, ripples = [];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+resize(); window.addEventListener('resize',resize);
+function addRipple(){ripples.push({x:Math.random()*W,y:Math.random()*H,r:0,alpha:0.1+Math.random()*0.08,speed:0.4+Math.random()*0.4});}
+setInterval(addRipple,1400);
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  ripples=ripples.filter(r=>r.alpha>0.005);
+  ripples.forEach(r=>{
+    ctx.beginPath();ctx.arc(r.x,r.y,r.r,0,Math.PI*2);
+    ctx.strokeStyle=`rgba(42,155,176,${r.alpha})`;ctx.lineWidth=1;ctx.stroke();
+    r.r+=r.speed;r.alpha*=0.985;
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+<script>
+function toggleNav(){var m=document.getElementById('navMobile');m.classList.toggle('open');}
+document.addEventListener('click',function(e){var m=document.getElementById('navMobile');if(m&&m.classList.contains('open')&&!e.target.closest('nav')&&!e.target.closest('#navMobile')){m.classList.remove('open');}});
+</script>
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>よくある質問 — キャリアパートナー</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#F0F8FA;--bg2:#E4F2F6;--bg3:#F8FCFD;
+  --deep:#0A3A44;--mid:#1A6070;
+  --accent:#2A9BB0;--accent-light:#7EC8D8;--accent-pale:#C8E8F0;
+  --text:#071C22;--text-mid:#1A3D4A;--text-light:#3A6878;
+  --line:rgba(42,155,176,0.15);
+  --teal:#3A9E94;--teal-light:#4ABFB0;--teal-pale:#D0F0EC;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;font-weight:400;overflow-x:hidden;line-height:1.8;}
+
+.ripple-canvas{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.4;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 8vw;display:flex;justify-content:space-between;align-items:center;background:rgba(240,248,250,0.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+.nav-logo{font-family:'Noto Serif JP',serif;font-size:14px;font-weight:400;color:var(--deep);letter-spacing:0.1em;text-decoration:none;white-space:nowrap;}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-link{font-size:12px;letter-spacing:0.06em;color:var(--text-light);text-decoration:none;transition:color 0.3s;white-space:nowrap;}
+.nav-link:hover,.nav-link.active{color:var(--accent);}
+.nav-cta{font-size:11px;letter-spacing:0.12em;color:var(--accent);border:1px solid var(--accent);padding:8px 18px;border-radius:20px;text-decoration:none;transition:all 0.3s;white-space:nowrap;}
+.nav-cta:hover{background:var(--accent);color:white;}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--accent);transition:all 0.3s;}
+.nav-mobile{display:none;position:fixed;top:57px;left:0;right:0;background:rgba(240,248,250,0.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:20px 8vw;z-index:99;flex-direction:column;gap:0;}
+.nav-mobile.open{display:flex;}
+.nav-mobile a{font-size:14px;color:var(--text-mid);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--line);letter-spacing:0.06em;transition:color 0.3s;}
+.nav-mobile a:last-child{border-bottom:none;}
+.nav-mobile a:hover{color:var(--accent);}
+.nav-mobile-cta{background:var(--accent);color:white!important;padding:14px 0;text-align:center;border-radius:4px;margin-top:12px;letter-spacing:0.1em!important;}
+@media(max-width:900px){.nav-links{display:none;}.nav-hamburger{display:flex;}}
+@media(max-width:600px){nav{padding:14px 5vw;}}
+
+.page-hero{padding:140px 8vw 80px;position:relative;z-index:1;}
+.page-tag{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:0.2em;color:var(--accent);margin-bottom:24px;opacity:0;animation:fadeUp 0.8s ease 0.3s forwards;}
+.page-tag::before{content:'';display:block;width:20px;height:1px;background:var(--accent);}
+.page-title{font-family:'Noto Serif JP',serif;font-weight:300;font-size:clamp(28px,3.5vw,44px);line-height:1.8;color:var(--deep);opacity:0;animation:fadeUp 1s ease 0.5s forwards;}
+.page-lead{font-size:15px;color:var(--text-mid);line-height:2;margin-top:20px;max-width:560px;opacity:0;animation:fadeUp 1s ease 0.7s forwards;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+/* カテゴリタブ */
+.faq-nav{position:relative;z-index:1;padding:0 8vw 48px;display:flex;gap:8px;flex-wrap:wrap;}
+.faq-tab{font-size:11px;letter-spacing:0.1em;padding:8px 20px;border-radius:20px;border:1px solid var(--line);color:var(--text-light);background:transparent;cursor:pointer;transition:all 0.25s;font-family:'Noto Sans JP',sans-serif;}
+.faq-tab:hover{border-color:var(--accent);color:var(--accent);}
+.faq-tab.active{background:var(--accent);border-color:var(--accent);color:white;}
+
+/* FAQ本体 */
+.faq-section{position:relative;z-index:1;padding:0 8vw 80px;}
+.faq-group{margin-bottom:60px;}
+.faq-group-label{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:0.2em;color:var(--accent);margin-bottom:24px;}
+.faq-group-label::before{content:'';display:block;width:20px;height:1px;background:var(--accent);}
+.faq-group-title{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:300;color:var(--deep);margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--line);}
+
+/* アコーディオン */
+.faq-item{border:1.5px solid var(--accent-pale);border-radius:12px;margin-bottom:12px;overflow:hidden;transition:border-color 0.3s,box-shadow 0.3s;background:white;}
+.faq-item:hover{border-color:var(--accent-light);box-shadow:0 4px 20px rgba(42,155,176,0.08);}
+.faq-item.open{border-color:var(--accent);box-shadow:0 4px 24px rgba(42,155,176,0.12);}
+.faq-q{display:flex;align-items:center;gap:16px;padding:22px 24px;cursor:pointer;user-select:none;}
+.faq-q-mark{width:32px;height:32px;border-radius:50%;background:var(--accent-pale);color:var(--accent);font-family:'Noto Serif JP',serif;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.3s;}
+.faq-item.open .faq-q-mark{background:var(--accent);color:white;}
+.faq-q-text{flex:1;font-size:14px;color:var(--text-mid);font-weight:400;line-height:1.7;}
+.faq-arrow{width:20px;height:20px;flex-shrink:0;color:var(--accent-light);transition:transform 0.35s ease;}
+.faq-item.open .faq-arrow{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s ease;}
+.faq-item.open .faq-a{max-height:400px;}
+.faq-a-inner{padding:0 24px 24px 72px;font-size:14px;color:var(--text-light);line-height:2;}
+.faq-a-inner strong{color:var(--accent);font-weight:400;}
+.faq-a-inner a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-pale);transition:border-color 0.3s;}
+.faq-a-inner a:hover{border-color:var(--accent);}
+
+/* お問い合わせ促進 */
+.faq-contact{margin-top:24px;padding:28px 32px;background:var(--bg2);border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.faq-contact-text{font-size:14px;color:var(--text-mid);line-height:2;}
+.faq-contact-text span{display:block;font-size:12px;color:var(--text-light);margin-top:2px;}
+.faq-contact-btn{font-size:12px;letter-spacing:0.08em;padding:12px 28px;background:var(--accent);color:white;border-radius:2px;text-decoration:none;white-space:nowrap;transition:background 0.3s;}
+.faq-contact-btn:hover{background:var(--mid);}
+
+/* CTA */
+.cta-section{background:var(--deep);padding:100px 8vw;text-align:center;position:relative;overflow:hidden;}
+.cta-ripple{position:absolute;border-radius:50%;border:1px solid rgba(126,200,216,0.15);pointer-events:none;animation:rippleExpand 8s ease-out infinite;}
+@keyframes rippleExpand{0%{transform:scale(0.3);opacity:0.5;}100%{transform:scale(3);opacity:0;}}
+.cta-title{font-family:'Noto Serif JP',serif;font-weight:300;font-size:clamp(22px,3.5vw,36px);color:white;line-height:1.8;margin-bottom:12px;position:relative;z-index:1;}
+.cta-sub{font-size:13px;color:var(--accent-light);margin-bottom:44px;position:relative;z-index:1;line-height:2;}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+.cta-btn-primary{background:var(--accent);color:white;font-size:13px;letter-spacing:0.1em;padding:14px 32px;border-radius:2px;text-decoration:none;transition:all 0.3s;}
+.cta-btn-primary:hover{background:var(--accent-light);}
+.cta-btn-secondary{border:1px solid rgba(126,200,216,0.5);color:var(--accent-light);font-size:13px;letter-spacing:0.1em;padding:14px 32px;border-radius:2px;text-decoration:none;transition:all 0.3s;}
+.cta-btn-secondary:hover{border-color:var(--accent-light);background:rgba(42,155,176,0.1);}
+
+footer{background:#061820;padding:28px 8vw;font-size:11px;color:rgba(126,200,216,0.3);letter-spacing:0.1em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+.footer-links a{color:rgba(126,200,216,0.3);text-decoration:none;transition:color 0.3s;}
+.footer-links a:hover{color:rgba(126,200,216,0.7);}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.9s ease,transform 0.9s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:768px){
+  .page-hero{padding:100px 6vw 60px;}
+  .faq-section{padding:0 6vw 60px;}
+  .faq-nav{padding:0 6vw 36px;}
+  .nav-links{display:none;}
+  .faq-a-inner{padding:0 16px 20px 52px;}
+}
+</style>
+</head>
+<body>
+
+<canvas class="ripple-canvas" id="rippleCanvas"></canvas>
+
+<nav>
+  <a class="nav-logo" href="index.html">キャリアパートナー</a>
+  <div class="nav-links">
+    <a class="nav-link" href="index.html#section-journey">キャリアパートナーとは</a>
+    <a class="nav-link" href="pricing.html">料金</a>
+    <a class="nav-link active" href="faq.html">よくある質問</a>
+    <a class="nav-link" href="https://careerpartner.jp/" target="_blank">運営会社</a>
+    <a class="nav-cta" href="https://carefle.vercel.app/" target="_blank">▶ まず無料診断してみる</a>
+  </div>
+  <div class="nav-hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html#section-journey">キャリアパートナーとは</a>
+  <a href="pricing.html">料金</a>
+  <a href="faq.html">よくある質問</a>
+  <a href="https://careerpartner.jp/" target="_blank">運営会社</a>
+  <a href="https://carefle.vercel.app/" target="_blank" class="nav-mobile-cta">▶ まず無料診断してみる</a>
+</div>
+
+<!-- ページヘッダー -->
+<div class="page-hero">
+  <div class="page-tag">FAQ — よくある質問</div>
+</div>
+
+<!-- カテゴリタブ -->
+<div class="faq-nav">
+  <button class="faq-tab active" onclick="filterFaq('all')">すべて</button>
+  <button class="faq-tab" onclick="filterFaq('service')">サービスについて</button>
+  <button class="faq-tab" onclick="filterFaq('price')">料金・解約について</button>
+  <button class="faq-tab" onclick="filterFaq('privacy')">データ・プライバシー</button>
+  <button class="faq-tab" onclick="filterFaq('company')">運営・信頼性</button>
+</div>
+
+<!-- FAQ本体 -->
+<div class="faq-section">
+
+  <!-- サービスについて -->
+  <div class="faq-group reveal" data-category="service">
+    <div class="faq-group-label">SERVICE</div>
+    <h2 class="faq-group-title">サービスについて</h2>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <div class="faq-q-mark">Q</div>
+        <div class="faq-q-text">転職エージェントやコーチングとどう違いますか？</div>
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        <strong>転職エージェントとの違い</strong><br>
+        転職エージェントは求人紹介と転職支援が主な役割ですが、キャリアパートナーは<strong>転職エージェントではありません</strong>。求人のご紹介も、転職・退職のご提案も一切行いません。「転職すべきかどうかも含めて整理したい」という方にこそご活用いただけるサービスです。<br><br>
+        <strong>コーチングとの違い</strong><br>
+        コーチングは主にゴール設定と行動変容を促すアプローチですが、キャリアパートナーは<strong>「そもそも自分は何がしたいのか」という内省のプロセス</strong>に重点を置いています。「ゴールがまだわからない」「まず自分を整理したい」という段階の方に向いています。<br><br>
+        またコーチングはプログラム期間中のみコーチが付いてのサポートが基本ですが、キャリアパートナーはご利用いただく限り、プロダクト（キャリフレ）と人（セッション）が循環しながら<strong>永続的に伴走</strong>いたします。
+      </div></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <div class="faq-q-mark">Q</div>
+        <div class="faq-q-text">どんな人が使えますか？転職を考えていなくても使えますか？</div>
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        はい、転職を考えていない方にこそご活用いただいています。<strong>「なんとなくモヤモヤしている」「自分が何を大切にしているかわからなくなってきた」</strong>という方が、最も多くご利用くださっています。<br><br>
+        転職・昇進・起業・現職継続……どんな選択肢も否定しません。あなた自身が納得できる答えを見つけることをサポートします。
+      </div></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <div class="faq-q-mark">Q</div>
+        <div class="faq-q-text">有料プランや継続コースへの売り込みはありますか？</div>
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        ありません。セッションでキャリフレの有料プランやプログラムセッションをご案内することはありますが、<strong>あくまで選択肢のご説明にとどめ、加入をお勧めしたり、断りにくい状況をつくることはしません</strong>。<br><br>
+        「今は必要ない」と感じたら、そのままで大丈夫です。
+      </div></div>
+    </div>
+  </div>
+
+  <!-- 料金・解約 -->
+  <div class="faq-group reveal" data-category="price">
+    <div class="faq-group-label">PRICE</div>
+    <h2 class="faq-group-title">料金・解約について</h2>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <div class="faq-q-mark">Q</div>
+        <div class="faq-q-text">料金体系を教えてください。</div>
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        2つのサービスで構成されています。<br><br>
+        <strong>キャリフレ（プロダクト）</strong><br>
+        ・無料：職業診断・人生史・WCMシート・ゴール/マイルストーン設定<br>
+        ・有料：日記・持ち味レポート（AIによる客観フィードバック）　月額980円（税込）<br><br>
+        <strong>セッション（ヒト）</strong><br>
+        ・単発：15,000円/回（税込・約60分）<br>
+        ・プログラム：150,000〜200,000円（税込・6〜8回）※状況により変動<br><br>
+        詳しくは<a href="pricing.html">料金ページ</a>をご覧ください。<br><br>
+        <div style="padding:12px 16px;background:rgba(58,158,148,0.06);border-radius:8px;border-left:2px solid var(--teal);">
+          <div style="font-size:12px;color:var(--teal);font-weight:400;margin-bottom:4px;">💡 セッションは任意です</div>
+          <div style="font-size:12px;color:var(--text-mid);line-height:1.8;">キャリフレを利用して、プロのカウンセラーと対話してさらに深めたいと感じた方のみ、任意でセッションをご利用いただけます。</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <div class="faq-q-mark">Q</div>
+        <div class="faq-q-text">途中でやめることはできますか？</div>
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        はい、いつでも退会・解約できます。<br><br>
+        <strong>キャリフレの有料プラン</strong>は、アカウント設定からいつでも解約可能です。解約後も、これまでの記録（日記・人生史など）はそのまま保持されます。<br><br>
+        <strong>単発セッション</strong>は1回ごとの契約なので、縛りはありません。<strong>プログラムセッション</strong>については、途中解約の条件を開始前にご説明します。
+      </div></div>
+    </div>
+
+  </div>
+
+  <!-- データ・プライバシー -->
+  <div class="faq-group reveal" data-category="privacy">
+    <div class="faq-group-label">PRIVACY</div>
+    <h2 class="faq-group-title">データ・プライバシーについて</h2>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <div class="faq-q-mark">Q</div>
+        <div class="faq-q-text">キャリフレに入力した内容は、第三者に見られることはありますか？</div>
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        いいえ。キャリフレに記録した日記・人生史・WCMシートなどは、<strong>あなただけが閲覧できるプライベートな記録</strong>です。他のユーザーはもちろん、運営側も通常は閲覧しません。<br><br>
+        セッションでご共有いただく場合は、あなた自身がカウンセラーに見せるかどうかを選べます。詳細は<a href="https://careerpartner.jp/" target="_blank">プライバシーポリシー</a>をご確認ください。
+      </div></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <div class="faq-q-mark">Q</div>
+        <div class="faq-q-text">個人情報はどのように管理されますか？</div>
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        登録時に取得する情報（メールアドレス等）は、サービス提供・連絡目的にのみ使用します。<strong>第三者への販売・提供は行いません</strong>。<br><br>
+        詳細は<a href="https://careerpartner.jp/" target="_blank">プライバシーポリシー</a>をご確認ください。
+      </div></div>
+    </div>
+  </div>
+
+  <!-- 運営・信頼性 -->
+  <div class="faq-group reveal" data-category="company">
+    <div class="faq-group-label">COMPANY</div>
+    <h2 class="faq-group-title">運営・信頼性について</h2>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <div class="faq-q-mark">Q</div>
+        <div class="faq-q-text">誰が運営しているサービスですか？</div>
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        キャリアパートナー株式会社が運営しています。キャリア領域に深く携わってきたメンバーが、「プロダクトとヒトの循環」でキャリア内省をサポートするために立ち上げたサービスです。<br><br>
+        運営会社の詳細は<a href="https://careerpartner.jp/" target="_blank">こちら（careerpartner.jp）</a>からご確認いただけます。
+      </div></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <div class="faq-q-mark">Q</div>
+        <div class="faq-q-text">カウンセラーはどんな人ですか？</div>
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        キャリア支援の実務経験を持つカウンセラーが担当します。セッションは<strong>1対1・完全非公開</strong>で行います。<br><br>
+        カウンセラーの詳細は<a href="index.html#counselor-section" target="_blank">こちらのカウンセラー紹介</a>をご覧ください。またはお問い合わせにてご確認ください。
+      </div></div>
+    </div>
+  </div>
+
+  <!-- まだ解決しない場合 -->
+  <div class="reveal">
+    <div class="faq-contact">
+      <div class="faq-contact-text">
+        上記で解決しない場合は、お気軽にお問い合わせください。
+        <span>通常2営業日以内にご返信いたします。</span>
+      </div>
+      <a class="faq-contact-btn" href="contact.html" >お問い合わせ</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-ripple" style="width:500px;height:500px;left:50%;top:50%;transform:translate(-50%,-50%);"></div>
+  <h2 class="cta-title">ありたい自分は、<br>立ち止まった先にいる。</h2>
+  <p class="cta-sub">内省を重ねるうちに、思考や気持ちのパターンが少しずつ見えてくる。<br>自分の心の声を知り、整え、より豊かな選択が出来る。そんな習慣を一緒に。</p>
+  <div class="cta-btns">
+    <a class="cta-btn-primary" href="https://carefle.vercel.app/" target="_blank">まず無料診断してみる</a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 キャリアパートナー / Career Partner<br><small style="font-size:10px;letter-spacing:0.05em;color:var(--text-light);">本サービスはキャリア相談・自己理解支援を目的としたプログラムです。医療・法律・労務上の助言には該当しません。</small></span>
+  <div class="footer-links">
+    <a href="index.html#section-journey">キャリアパートナーとは</a>
+    <a href="pricing.html">料金</a>
+    <a href="faq.html">よくある質問</a>
+    <a href="contact.html">お問い合わせ</a>
+    <a href="#">プライバシーポリシー</a>
+    <a href="https://careerpartner.jp/" target="_blank">運営会社</a>
+    <a href="https://carefle.vercel.app/" target="_blank" style="color:var(--accent);border:1px solid var(--accent);padding:4px 12px;border-radius:16px;font-size:11px;">▶ まず無料診断</a>
+  </div>
+</footer>
+
+<script>
+// Ripple canvas
+const canvas = document.getElementById('rippleCanvas');
+const ctx = canvas.getContext('2d');
+let W, H, ripples = [];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+resize(); window.addEventListener('resize',resize);
+function addRipple(){ripples.push({x:Math.random()*W,y:Math.random()*H,r:0,alpha:0.1+Math.random()*0.08,speed:0.4+Math.random()*0.4});}
+setInterval(addRipple,1400);
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  ripples=ripples.filter(r=>r.alpha>0.005);
+  ripples.forEach(r=>{
+    ctx.beginPath();ctx.arc(r.x,r.y,r.r,0,Math.PI*2);
+    ctx.strokeStyle=`rgba(42,155,176,${r.alpha})`;ctx.lineWidth=1;ctx.stroke();
+    r.r+=r.speed;r.alpha*=0.985;
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+
+// Reveal on scroll
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target);}});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+function toggleNav(){var m=document.getElementById('navMobile');m.classList.toggle('open');}
+document.addEventListener('click',function(e){var m=document.getElementById('navMobile');if(m&&m.classList.contains('open')&&!e.target.closest('nav')&&!e.target.closest('#navMobile')){m.classList.remove('open');}});
+
+function toggleFaq(item){
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>{if(i!==item)i.classList.remove('open');});
+  item.classList.toggle('open',!isOpen);
+}
+
+// Category filter
+function filterFaq(cat){
+  document.querySelectorAll('.faq-tab').forEach(t=>t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.faq-group').forEach(g=>{
+    if(cat==='all'||g.dataset.category===cat){
+      g.style.display='';
+    } else {
+      g.style.display='none';
+    }
+  });
+}
+</script>
+</body>
+</html>

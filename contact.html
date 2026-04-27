@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お問い合わせ — キャリアパートナー</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#F0F8FA;--bg2:#E4F2F6;--bg3:#F8FCFD;
+  --deep:#0A3A44;--mid:#1A6070;
+  --accent:#2A9BB0;--accent-light:#7EC8D8;--accent-pale:#C8E8F0;
+  --text:#071C22;--text-mid:#1A3D4A;--text-light:#3A6878;
+  --line:rgba(42,155,176,0.15);
+  --teal:#3A9E94;--teal-light:#4ABFB0;--teal-pale:#D0F0EC;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;font-weight:400;overflow-x:hidden;line-height:1.8;}
+
+.ripple-canvas{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.4;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 8vw;display:flex;justify-content:space-between;align-items:center;background:rgba(240,248,250,0.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+.nav-logo{font-family:'Noto Serif JP',serif;font-size:14px;font-weight:400;color:var(--deep);letter-spacing:0.1em;text-decoration:none;white-space:nowrap;}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-link{font-size:12px;letter-spacing:0.06em;color:var(--text-light);text-decoration:none;transition:color 0.3s;white-space:nowrap;}
+.nav-link:hover,.nav-link.active{color:var(--accent);}
+.nav-cta{font-size:11px;letter-spacing:0.12em;color:var(--accent);border:1px solid var(--accent);padding:8px 18px;border-radius:20px;text-decoration:none;transition:all 0.3s;white-space:nowrap;}
+.nav-cta:hover{background:var(--accent);color:white;}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--accent);transition:all 0.3s;}
+.nav-mobile{display:none;position:fixed;top:57px;left:0;right:0;background:rgba(240,248,250,0.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:20px 8vw;z-index:99;flex-direction:column;gap:0;}
+.nav-mobile.open{display:flex;}
+.nav-mobile a{font-size:14px;color:var(--text-mid);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--line);letter-spacing:0.06em;transition:color 0.3s;}
+.nav-mobile a:last-child{border-bottom:none;}
+.nav-mobile a:hover{color:var(--accent);}
+.nav-mobile-cta{background:var(--accent);color:white!important;padding:14px 0;text-align:center;border-radius:4px;margin-top:12px;letter-spacing:0.1em!important;}
+@media(max-width:900px){.nav-links{display:none;}.nav-hamburger{display:flex;}}
+@media(max-width:600px){nav{padding:14px 5vw;}}
+
+/* ページヘッダー */
+.page-hero{padding:140px 8vw 60px;position:relative;z-index:1;}
+.page-tag{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:0.2em;color:var(--accent);margin-bottom:24px;opacity:0;animation:fadeUp 0.8s ease 0.3s forwards;}
+.page-tag::before{content:'';display:block;width:20px;height:1px;background:var(--accent);}
+.page-title{font-family:'Noto Serif JP',serif;font-weight:300;font-size:clamp(28px,3.5vw,44px);line-height:1.8;color:var(--deep);opacity:0;animation:fadeUp 1s ease 0.5s forwards;}
+.page-lead{font-size:15px;color:var(--text-mid);line-height:2;margin-top:20px;max-width:560px;opacity:0;animation:fadeUp 1s ease 0.7s forwards;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+/* フォームセクション */
+.contact-section{position:relative;z-index:1;padding:0 8vw 100px;}
+.contact-wrap{max-width:680px;margin:0 auto;}
+
+.form-group{margin-bottom:28px;}
+.form-label{display:block;font-size:13px;color:var(--text-mid);margin-bottom:8px;letter-spacing:0.06em;}
+.form-label span.required{color:var(--accent);font-size:11px;margin-left:6px;letter-spacing:0.05em;}
+.form-label span.optional{color:var(--text-light);font-size:11px;margin-left:6px;letter-spacing:0.05em;}
+.form-input{width:100%;padding:14px 18px;background:white;border:1.5px solid var(--line);border-radius:8px;font-family:'Noto Sans JP',sans-serif;font-size:14px;color:var(--text);line-height:1.6;transition:border-color 0.3s,box-shadow 0.3s;outline:none;}
+.form-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(42,155,176,0.1);}
+.form-input::placeholder{color:var(--text-light);font-size:13px;}
+textarea.form-input{resize:vertical;min-height:160px;}
+select.form-input{cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1L6 7L11 1' stroke='%233A6878' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;}
+
+.form-note{font-size:11px;color:var(--text-light);margin-top:6px;line-height:1.7;}
+
+.form-divider{width:100%;height:1px;background:var(--line);margin:32px 0;}
+
+/* プライバシー同意 */
+.privacy-check{display:flex;align-items:flex-start;gap:12px;padding:20px 24px;background:var(--bg2);border-radius:10px;margin-bottom:32px;}
+.privacy-check input[type="checkbox"]{width:18px;height:18px;accent-color:var(--accent);flex-shrink:0;margin-top:2px;cursor:pointer;}
+.privacy-check label{font-size:13px;color:var(--text-mid);line-height:1.8;cursor:pointer;}
+.privacy-check label a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-light);}
+.privacy-check label a:hover{border-bottom-color:var(--accent);}
+
+/* 送信ボタン */
+.submit-btn{display:block;width:100%;padding:18px 32px;background:var(--accent);color:white;font-family:'Noto Sans JP',sans-serif;font-size:14px;letter-spacing:0.1em;border:none;border-radius:4px;cursor:pointer;transition:all 0.3s;text-align:center;}
+.submit-btn:hover{background:var(--mid);}
+.submit-btn:disabled{background:var(--text-light);cursor:not-allowed;}
+
+/* 送信完了メッセージ */
+.success-msg{display:none;text-align:center;padding:60px 32px;background:white;border-radius:16px;border:1.5px solid var(--accent-pale);}
+.success-msg .success-icon{width:56px;height:56px;border-radius:50%;background:rgba(42,155,176,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;}
+.success-msg h3{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:300;color:var(--deep);margin-bottom:12px;}
+.success-msg p{font-size:13px;color:var(--text-mid);line-height:2;}
+
+/* CTA */
+.cta-section{background:var(--deep);padding:80px 8vw;text-align:center;position:relative;overflow:hidden;}
+.cta-ripple{position:absolute;border-radius:50%;border:1px solid rgba(126,200,216,0.15);pointer-events:none;animation:rippleExpand 8s ease-out infinite;}
+@keyframes rippleExpand{0%{transform:scale(0.3);opacity:0.5;}100%{transform:scale(3);opacity:0;}}
+.cta-title{font-family:'Noto Serif JP',serif;font-weight:300;font-size:clamp(20px,3vw,32px);color:white;line-height:1.8;margin-bottom:12px;position:relative;z-index:1;}
+.cta-sub{font-size:13px;color:var(--accent-light);margin-bottom:36px;position:relative;z-index:1;line-height:2;}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+.cta-btn-primary{background:var(--accent);color:white;font-size:13px;letter-spacing:0.1em;padding:14px 32px;border-radius:2px;text-decoration:none;transition:all 0.3s;}
+.cta-btn-primary:hover{background:var(--accent-light);}
+
+/* フッター */
+footer{background:var(--deep);padding:40px 8vw;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:20px;border-top:1px solid rgba(126,200,216,0.1);}
+footer span{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.05em;line-height:2;}
+.footer-links{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+.footer-links a{font-size:11px;color:rgba(255,255,255,0.5);text-decoration:none;letter-spacing:0.06em;transition:color 0.3s;}
+.footer-links a:hover{color:var(--accent-light);}
+
+@media(max-width:600px){
+  footer{flex-direction:column;}
+  .footer-links{gap:12px;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="rippleCanvas" class="ripple-canvas"></canvas>
+
+<!-- ナビゲーション -->
+<nav>
+  <a href="index.html" class="nav-logo">CAREER PARTNER</a>
+  <div class="nav-links">
+    <a href="index.html#section-journey" class="nav-link">キャリアパートナーとは</a>
+    <a href="pricing.html" class="nav-link">料金</a>
+    <a href="faq.html" class="nav-link">よくある質問</a>
+    <a href="contact.html" class="nav-link active">お問い合わせ</a>
+    <a href="https://carefle.vercel.app/" target="_blank" class="nav-cta">▶ まず無料診断</a>
+  </div>
+  <div class="nav-hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div id="navMobile" class="nav-mobile">
+  <a href="index.html#section-journey">キャリアパートナーとは</a>
+  <a href="pricing.html">料金</a>
+  <a href="faq.html">よくある質問</a>
+  <a href="contact.html">お問い合わせ</a>
+  <a href="https://carefle.vercel.app/" target="_blank" class="nav-mobile-cta">▶ まず無料診断してみる</a>
+</div>
+
+<!-- ページヘッダー -->
+<div class="page-hero" style="position:relative;z-index:1;">
+  <div class="page-tag">CONTACT</div>
+  <h1 class="page-title">お問い合わせ</h1>
+  <p class="page-lead">サービスに関するご質問・ご不明点など、お気軽にご連絡ください。通常3営業日以内にご返信いたします。</p>
+</div>
+
+<!-- フォーム -->
+<div class="contact-section">
+  <div class="contact-wrap">
+
+    <!-- フォーム本体 -->
+    <div id="contactForm">
+      <div class="form-group">
+        <label class="form-label" for="name">お名前<span class="required">必須</span></label>
+        <input type="text" id="name" class="form-input" placeholder="例：山田 太郎" autocomplete="name">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">メールアドレス<span class="required">必須</span></label>
+        <input type="email" id="email" class="form-input" placeholder="例：taro@example.com" autocomplete="email">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="category">お問い合わせの種類<span class="optional">任意</span></label>
+        <select id="category" class="form-input">
+          <option value="">選択してください</option>
+          <option value="service">サービス・機能について</option>
+          <option value="pricing">料金・プランについて</option>
+          <option value="session">セッションについて</option>
+          <option value="carefle">キャリフレ（プロダクト）について</option>
+          <option value="account">アカウント・登録について</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="message">お問い合わせ内容<span class="required">必須</span></label>
+        <textarea id="message" class="form-input" placeholder="ご質問・ご要望をできるだけ詳しくお書きください。"></textarea>
+        <div class="form-note">※ 個人情報（氏名・連絡先等）はご返信のためにのみ使用し、第三者への提供は行いません。</div>
+      </div>
+
+      <div class="form-divider"></div>
+
+      <div class="privacy-check">
+        <input type="checkbox" id="privacyAgree">
+        <label for="privacyAgree"><a href="https://careerpartner.jp/" target="_blank">プライバシーポリシー</a>に同意の上、送信します。</label>
+      </div>
+
+      <button type="button" class="submit-btn" id="submitBtn" onclick="handleSubmit()">送信する</button>
+    </div>
+
+    <!-- 送信完了メッセージ -->
+    <div class="success-msg" id="successMsg">
+      <div class="success-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"><path d="M4 12 L9 17 L20 7"/></svg>
+      </div>
+      <h3>送信が完了しました</h3>
+      <p>お問い合わせありがとうございます。<br>内容を確認のうえ、3営業日以内にご返信いたします。<br><br>しばらくお待ちいただきますよう、<br>よろしくお願いいたします。</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-ripple" style="width:500px;height:500px;left:50%;top:50%;transform:translate(-50%,-50%);"></div>
+  <h2 class="cta-title">まずは、キャリフレで<br>自分と向き合ってみる。</h2>
+  <p class="cta-sub">無料で始められます。答えを急がなくていい。</p>
+  <div class="cta-btns">
+    <a class="cta-btn-primary" href="https://carefle.vercel.app/" target="_blank">まず無料診断してみる</a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 キャリアパートナー / Career Partner<br><small style="font-size:10px;letter-spacing:0.05em;color:rgba(255,255,255,0.3);">本サービスはキャリア相談・自己理解支援を目的としたプログラムです。医療・法律・労務上の助言には該当しません。</small></span>
+  <div class="footer-links">
+    <a href="index.html#section-journey">キャリアパートナーとは</a>
+    <a href="pricing.html">料金</a>
+    <a href="faq.html">よくある質問</a>
+    <a href="contact.html">お問い合わせ</a>
+    <a href="#">プライバシーポリシー</a>
+    <a href="https://careerpartner.jp/" target="_blank">運営会社</a>
+    <a href="https://carefle.vercel.app/" target="_blank" style="color:var(--accent);border:1px solid var(--accent);padding:4px 12px;border-radius:16px;font-size:11px;">▶ まず無料診断</a>
+  </div>
+</footer>
+
+<script>
+// Ripple canvas
+const canvas = document.getElementById('rippleCanvas');
+const ctx = canvas.getContext('2d');
+let W, H, ripples = [];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+resize(); window.addEventListener('resize',resize);
+function addRipple(){ripples.push({x:Math.random()*W,y:Math.random()*H,r:0,alpha:0.1+Math.random()*0.08,speed:0.4+Math.random()*0.4});}
+setInterval(addRipple,1400);
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  ripples=ripples.filter(r=>r.alpha>0.005);
+  ripples.forEach(r=>{
+    ctx.beginPath();ctx.arc(r.x,r.y,r.r,0,Math.PI*2);
+    ctx.strokeStyle=`rgba(42,155,176,${r.alpha})`;ctx.lineWidth=1;ctx.stroke();
+    r.r+=r.speed;r.alpha*=0.985;
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+
+function toggleNav(){var m=document.getElementById('navMobile');m.classList.toggle('open');}
+document.addEventListener('click',function(e){var m=document.getElementById('navMobile');if(m&&m.classList.contains('open')&&!e.target.closest('nav')&&!e.target.closest('#navMobile')){m.classList.remove('open');}});
+
+function handleSubmit(){
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+  const agreed = document.getElementById('privacyAgree').checked;
+
+  // バリデーション
+  if(!name){alert('お名前を入力してください。');document.getElementById('name').focus();return;}
+  if(!email){alert('メールアドレスを入力してください。');document.getElementById('email').focus();return;}
+  const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailReg.test(email)){alert('正しいメールアドレスを入力してください。');document.getElementById('email').focus();return;}
+  if(!message){alert('お問い合わせ内容を入力してください。');document.getElementById('message').focus();return;}
+  if(!agreed){alert('プライバシーポリシーへの同意が必要です。');return;}
+
+  // 送信処理（ここでは完了画面を表示）
+  document.getElementById('contactForm').style.display='none';
+  document.getElementById('successMsg').style.display='block';
+  window.scrollTo({top:document.querySelector('.contact-section').offsetTop - 80, behavior:'smooth'});
+}
+</script>
+</body>
+</html>
