@@ -130,7 +130,7 @@ section{position:relative;z-index:1;}
 .cycle-card.human{border-top:3px solid var(--teal-light);}
 .cycle-center{position:relative;display:flex;align-items:center;justify-content:center;}
 #cycleCanvas{position:absolute;inset:-60px -20px;width:calc(100% + 40px);height:calc(100% + 120px);pointer-events:none;}
-.cycle-center-icon{width:56px;height:56px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 10px var(--accent-pale);z-index:2;animation:pulseGlow 3s ease-in-out infinite;position:relative;}
+.cycle-center-icon{width:56px;height:56px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 10px var(--accent-pale);z-index:2;position:relative;}
 @keyframes pulseGlow{0%,100%{box-shadow:0 0 0 8px var(--accent-pale);}50%{box-shadow:0 0 0 16px rgba(42,155,176,0.08);}}
 .journey-card-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
 .p-icon{background:rgba(42,155,176,0.12);}
@@ -348,7 +348,7 @@ footer{background:#061820;padding:32px 8vw;font-size:11px;color:rgba(126,200,216
 <nav>
   <a class="nav-logo" href="index.html">キャリアパートナー</a>
   <div class="nav-links">
-    <a class="nav-link active" href="#section-journey">キャリアパートナーとは</a>
+    <a class="nav-link active" href="#top">キャリアパートナーとは</a>
     <a class="nav-link" href="pricing.html">料金</a>
     <a class="nav-link" href="faq.html">よくある質問</a>
     <a class="nav-link" href="https://careerpartner.jp/" target="_blank">運営会社</a>
@@ -359,7 +359,7 @@ footer{background:#061820;padding:32px 8vw;font-size:11px;color:rgba(126,200,216
   </div>
 </nav>
 <div class="nav-mobile" id="navMobile">
-  <a href="#section-journey">キャリアパートナーとは</a>
+  <a href="#top">キャリアパートナーとは</a>
   <a href="pricing.html">料金</a>
   <a href="faq.html">よくある質問</a>
   <a href="https://careerpartner.jp/" target="_blank">運営会社</a>
@@ -367,7 +367,7 @@ footer{background:#061820;padding:32px 8vw;font-size:11px;color:rgba(126,200,216
 </div>
 
 <!-- HERO【1】元の写真ビジュアルに戻す -->
-<section class="hero">
+<section class="hero" id="top">
   <div class="hero-ripple" style="width:500px;height:500px;left:-100px;top:30%;animation-delay:0s;"></div>
   <div class="hero-text">
     <div class="hero-label">CAREER PARTNER — キャリアパートナー</div>
@@ -386,8 +386,6 @@ footer{background:#061820;padding:32px 8vw;font-size:11px;color:rgba(126,200,216
         まず無料診断してみる
       </a>
     </div>
-    <div class="scroll-hint">
-      <div class="scroll-line"></div>
       SCROLL
     </div>
   </div>
@@ -430,7 +428,7 @@ footer{background:#061820;padding:32px 8vw;font-size:11px;color:rgba(126,200,216
         サービス背景
       </div>
       <h2 class="reveal" style="font-family:'Noto Serif JP',serif;font-weight:300;font-size:clamp(26px,3.8vw,44px);line-height:1.8;color:white;margin-bottom:36px;">
-        なぜ、立ち止まるのか。
+        立ち止まることが、きっと人生の豊かさに繋がる。
       </h2>
       <p class="reveal" style="font-size:clamp(15px,1.6vw,17px);color:rgba(255,255,255,0.72);line-height:2.3;margin-bottom:0;">
         現代は、速さを正義とする時代。<br>
@@ -439,9 +437,8 @@ footer{background:#061820;padding:32px 8vw;font-size:11px;color:rgba(126,200,216
         走り続けるうちに、自分が何を大切にしてきたか、見えなくなっていく。
       </p>
       <div style="width:40px;height:1px;background:var(--accent-light);opacity:0.4;margin:40px 0;"></div>
-      <p class="reveal" style="font-family:'Noto Serif JP',serif;font-size:clamp(18px,2.2vw,24px);color:var(--accent-light);border-left:2px solid var(--accent);padding-left:24px;line-height:2;">
-        キャリアパートナーは、その逆を行く。<br>
-        静かな時間を、意図的につくる場所。
+      <p class="reveal" style="font-family:'Noto Serif JP',serif;font-size:clamp(18px,2.2vw,24px);color:var(--accent-light);line-height:2;">
+        キャリアパートナーは、その逆を大切にする。静かな時間を、意図的につくる場所。
       </p>
     </div>
   </div>
@@ -495,12 +492,12 @@ footer{background:#061820;padding:32px 8vw;font-size:11px;color:rgba(126,200,216
           </div>
         </div>
         <div class="cycle-center">
-          <canvas id="cycleCanvas"></canvas>
-          <div class="cycle-center-icon">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round">
-              <path d="M7 14 C7 10.1 10.1 7 14 7 C17.9 7 21 10.1 21 14"/>
-              <path d="M21 14 C21 17.9 17.9 21 14 21 C10.1 21 7 17.9 7 14"/>
-              <path d="M19 10l2 4 4-2"/><path d="M9 18l-2-4-4 2"/>
+          <div class="cycle-center-icon" style="width:64px;height:64px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 10px var(--accent-pale);position:relative;z-index:2;">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M26 10l2 5 5-2"/>
+              <path d="M4 18C4 10.3 10.3 4 18 4c4.4 0 8.3 2 11 5.1"/>
+              <path d="M10 26l-2-5-5 2"/>
+              <path d="M32 18c0 7.7-6.3 14-14 14-4.4 0-8.3-2-11-5.1"/>
             </svg>
           </div>
         </div>
@@ -648,7 +645,7 @@ footer{background:#061820;padding:32px 8vw;font-size:11px;color:rgba(126,200,216
             <path d="M38 8 L39 11 L42 12 L39 13 L38 16 L37 13 L34 12 L37 11 Z" stroke="#7EC8D8" stroke-width="1" fill="rgba(126,200,216,0.2)" stroke-linejoin="round"/>
           </svg>
         </div>
-        <div class="feature-tile-name">持ち味レポ</div>
+        <div class="feature-tile-name">持ち味レポート</div>
         <div class="feature-tile-desc">各記録の内容をもとに、AIが"あなたらしい持ち味"を客観的にフィードバックします。有料プランで利用可能。</div>
       </div>
     </div>
@@ -668,7 +665,7 @@ footer{background:#061820;padding:32px 8vw;font-size:11px;color:rgba(126,200,216
       一人で抱えていることを、<br class="sp-br">
       プロと一緒に解きほぐす。
     </h2>
-    <p class="section-lead reveal">まずキャリフレで自分を整理して、もっと深めたいと感じたときに、プロのカウンセラーとのセッションを選べます。セッションするかどうかは、あなたが決めてください。</p>
+    <p class="section-lead reveal">キャリフレで自分自身を整理して、もっと深めたいと感じたときに、任意でプロのカウンセラーとのセッションも可能です。</p>
     <div class="carehug-grid reveal">
       <div class="carehug-tile">
         <div class="carehug-tile-icon">
@@ -720,7 +717,7 @@ footer{background:#061820;padding:32px 8vw;font-size:11px;color:rgba(126,200,216
           </svg>
         </div>
         <div class="carehug-tile-name">料金・時間</div>
-        <div class="carehug-tile-desc">1セッション 約60分。詳細はセッション前にご案内します。</div>
+        <div class="carehug-tile-desc">1セッション 約60分・15,000円（税込）。詳細は<a href="pricing.html" style="color:var(--teal);text-decoration:none;border-bottom:1px solid var(--teal-light);">料金ページ</a>をご確認ください。</div>
       </div>
       <div class="carehug-tile">
         <div class="carehug-tile-icon">
@@ -729,7 +726,7 @@ footer{background:#061820;padding:32px 8vw;font-size:11px;color:rgba(126,200,216
           </svg>
         </div>
         <div class="carehug-tile-name">申し込み方法</div>
-        <div class="carehug-tile-desc">以下申込ボタンからご予約いただけます。まずはお気軽にお申込みください。秘密厳守。</div>
+        <div class="carehug-tile-desc">キャリフレ上の申し込みボタンからご予約いただけます。お気軽にお申込みください。</div>
       </div>
     </div>
   </div>
@@ -737,7 +734,7 @@ footer{background:#061820;padding:32px 8vw;font-size:11px;color:rgba(126,200,216
 
 <!-- カウンセラー紹介 -->
 <section id="counselor-section">
-  <div class="section-inner" style="background:var(--bg);border-top:none;padding-top:0;">
+  <div class="section-inner" style="background:var(--bg);">
     <div class="section-tag reveal">カウンセラー紹介</div>
     <h2 class="section-title reveal">あなたに寄り添う、<br>プロのカウンセラー。</h2>
     <p class="section-lead reveal">経験豊富なキャリアカウンセラーが、1対1で伴走します。</p>
@@ -918,16 +915,12 @@ footer{background:#061820;padding:32px 8vw;font-size:11px;color:rgba(126,200,216
           <tr><td>目的</td><td>転職成立</td><td>目標達成・変化</td><td class="hl">心の声を知る・自走</td></tr>
           <tr><td>継続性</td><td>転職まで</td><td>プログラム期間のみ</td><td class="hl">10年・20年・永続的</td></tr>
           <tr><td>プロダクト</td><td><span class="cross">なし</span></td><td><span class="cross">なし</span></td><td class="hl"><span class="check">✓</span> あり<br><small>内省ログが蓄積</small></td></tr>
-          <tr><td>価格</td><td>無料<br><small>（企業が負担）</small></td><td>単発 2〜3万円<br><small>本格プログラム 40〜100万円</small></td><td class="hl">プロダクト 無料〜月1,000円<br><small>（任意）セッション 1.5万円〜</small></td></tr>
+          <tr><td>価格</td><td>無料<br><small>（企業が負担）</small></td><td>単発 2〜3万円<br><small>プログラム 40〜100万円</small></td><td class="hl">プロダクト 無料〜月980円<br><small>（任意）セッション 1.5万円〜</small></td></tr>
           <tr><td>求人紹介</td><td><span class="check">✓</span> あり</td><td><span class="cross">なし</span></td><td class="hl"><span class="cross">なし</span></td></tr>
           <tr><td>スピード感</td><td>短期</td><td>短〜中期</td><td class="hl"><span class="wait">中〜長期</span></td></tr>
           <tr><td>こんな人に</td><td>すぐ転職したい人</td><td>明確なゴールを決めて走り抜きたい人</td><td class="hl">自身の気持ちを整理したい、立ち止まって考えたい人</td></tr>
         </tbody>
       </table>
-    </div>
-    <div class="compare-note reveal">
-      なぜこの設計にしたか —
-      <a href="#">こだわりのサービス設計、詳しくはこちら </a>
     </div>
   </div>
 </section>
@@ -1072,7 +1065,7 @@ footer{background:#061820;padding:32px 8vw;font-size:11px;color:rgba(126,200,216
 <footer>
   <span>© 2026 キャリアパートナー / Career Partner<br><small style="font-size:10px;letter-spacing:0.05em;color:var(--text-light);">本サービスはキャリア相談・自己理解支援を目的としたプログラムです。医療・法律・労務上の助言には該当しません。</small></span>
   <div class="footer-links">
-    <a href="#section-journey">キャリアパートナーとは</a>
+    <a href="#top">キャリアパートナーとは</a>
     <a href="pricing.html">料金</a>
     <a href="faq.html">よくある質問</a>
     <a href="contact.html">お問い合わせ</a>
