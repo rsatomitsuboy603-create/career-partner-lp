@@ -76,23 +76,50 @@
 
   /* ──────────── HERO ──────────── */
   .hero {
-    padding: 7rem 4rem 5rem;
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: end;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 0;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero-bg img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(0.88) saturate(0.85);
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,rgba(238,246,247,0.97) 0%,rgba(238,246,247,0.90) 38%,rgba(238,246,247,0.50) 62%,rgba(238,246,247,0.10) 100%),
+                linear-gradient(180deg,transparent 45%,rgba(238,246,247,0.65) 100%);
+    pointer-events: none;
+  }
+  .hero-text {
+    padding: 0 6vw 0 8vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
   }
   .hero-label {
-    font-size: 0.7rem;
+    font-size: 11px;
     letter-spacing: 0.25em;
     color: var(--green);
-    text-transform: uppercase;
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 32px;
   }
   .hero-label::before {
     content: '';
@@ -101,59 +128,26 @@
     height: 1px;
     background: var(--green);
   }
-  .hero h1 {
+  .hero-title {
     font-family: 'Shippori Mincho', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(28px, 3.2vw, 48px);
     font-weight: 700;
-    line-height: 1.4;
+    line-height: 1.6;
     letter-spacing: 0.03em;
     color: var(--ink);
+    white-space: nowrap;
   }
-  .hero h1 em {
-    font-style: normal;
-    color: var(--green);
-    display: block;
-    font-size: 0.65em;
-    font-weight: 500;
-    margin-bottom: 0.4rem;
-    letter-spacing: 0.15em;
+  .hero-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--green-mid);
+    margin: 28px 0;
   }
   .hero-sub {
     font-size: 1rem;
     color: var(--ink-mid);
     line-height: 2;
-    margin-top: 1.5rem;
-  }
-  .hero-right {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  .stat-card {
-    background: var(--white);
-    border: 0.5px solid var(--rule);
-    border-left: 3px solid var(--green);
-    padding: 1.2rem 1.5rem;
-    border-radius: 0;
-  }
-  .stat-number {
-    font-family: 'Shippori Mincho', serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--green);
-    line-height: 1;
-    margin-bottom: 0.3rem;
-  }
-  .stat-label {
-    font-size: 0.78rem;
-    color: var(--ink-mid);
-    line-height: 1.6;
-  }
-  .stat-source {
-    font-size: 0.65rem;
-    color: var(--ink-light);
-    margin-top: 0.4rem;
-    letter-spacing: 0.05em;
+    white-space: nowrap;
   }
 
   /* ──────────── SECTION BASE ──────────── */
@@ -333,10 +327,9 @@
     margin-top: 3rem;
   }
   .effect-card {
-    background: var(--cream);
+    background: var(--white);
     padding: 3rem 2.5rem;
   }
-  .effect-card:nth-child(1) { background: var(--white); }
   .effect-icon {
     width: 36px;
     height: 36px;
@@ -564,7 +557,7 @@
     line-height: 1.8;
   }
 
-  /* ──────────── 06 CAREER PARTNER CTA ──────────── */
+  /* ──────────── 05 CAREER PARTNER CTA ──────────── */
   .cp-section {
     background: var(--green);
     padding: 6rem 0;
@@ -573,11 +566,11 @@
     padding-top: 0;
     padding-bottom: 0;
   }
-  .cp-grid {
+  .cp-features {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
   }
   .cp-label {
     font-size: 0.68rem;
@@ -722,6 +715,10 @@
   @media (max-width: 768px) {
     .site-header { padding: 0 1.5rem; }
     .hero { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem 3rem; }
+    .hero-bg::after { background: rgba(238,246,247,0.86); }
+    .hero-text { padding: 0 6vw; }
+    .hero-title { white-space: normal; }
+    .hero-sub { white-space: normal; }
     .section { padding: 4rem 1.5rem; }
     .what-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .noise-cards { grid-template-columns: 1fr; }
@@ -729,8 +726,7 @@
     .tips-grid { grid-template-columns: 1fr; }
     .data-row { grid-template-columns: 1fr 1fr; }
     .data-row .data-bar-wrap { display: none; }
-    .compare-table { font-size: 0.75rem; }
-    .cp-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .cp-features { grid-template-columns: 1fr; }
     .cp-section { padding: 4rem 0; }
     .wave-grid { grid-template-columns: 1fr; }
     .final-section { padding: 4rem 1.5rem; }
@@ -756,14 +752,16 @@
 </header>
 
 <!-- HERO -->
-<section class="hero reveal" style="max-width:800px;margin:0 auto;">
-  <div class="hero-left">
-    <div class="hero-label">Reflection</div>
-    <h1>
-      <em>なぜ今、内省なのか。</em>
-      内省（リフレクション）とは何か、<br>
-      その力と使い方。
+<section class="hero">
+  <div class="hero-bg">
+    <img src="%E9%9D%99%E3%81%8B%E3%81%AA%E6%99%82%E9%96%93%E3%81%AE%E3%83%8E%E3%83%BC%E3%83%88%E3%81%A8%E3%83%9A%E3%83%B3.png" alt="静かな時間のノートとペン">
+  </div>
+  <div class="hero-text reveal">
+    <div class="hero-label">REFLECTION — 内省とは</div>
+    <h1 class="hero-title">
+      内省（リフレクション）とは何か、<br>その力と使い方。
     </h1>
+    <div class="hero-divider"></div>
     <p class="hero-sub">
       立ち止まることを、急かされる時代に。<br>
       自分の心の声を聞く習慣が、<br>
@@ -777,22 +775,19 @@
 <!-- 01 WHAT IS -->
 <section class="section" id="what">
   <div class="sec-label reveal">01 — What is reflection</div>
-  <h2 class="sec-h2 reveal">内省（リフレクション）とは、<br>自分の心の声を聴く技術。</h2>
+  <h2 class="sec-h2 reveal">内省（リフレクション）とは、自分の心の声を聴く技術。</h2>
+  <div class="quote-block reveal" style="max-width:720px;margin:1.5rem 0 2rem;">
+    <p>「経験そのものが人を成長させるのではない。経験を内省することが人を成長させる。」</p>
+    <p style="font-size:0.72rem;color:var(--ink-light);margin-top:0.6rem;font-family:'Noto Sans JP',sans-serif;">— 教育哲学者 ジョン・デューイ</p>
+  </div>
   <p class="sec-lead reveal">単なる「振り返り」ではありません。経験に意味を与え、自分の価値観と判断軸を育てる、知的な習慣です。</p>
 
-  <div class="what-main reveal" style="max-width:800px;margin:0 auto 48px;">
+  <div class="what-main reveal" style="max-width:800px;margin:0 0 48px;">
     <p>
       内省とは、<strong>立ち止まって、自分の内側に目を向けること</strong>です。
       日々の出来事や感情を客観的に観察し、「なぜそう感じたのか」「自分にとって何が大切なのか」を問い直すプロセスです。
-    </p>
-    <p>
-      重要なのは、<strong>事実の羅列ではなく「解釈による意味付け」</strong>です。
-      まったく同じ経験をしても、それをどう意味づけるかで、その人の成長も、判断の精度も、人生の豊かさも変わります。
       一つひとつの経験には、その人だけにしか見えない意味がある。内省はそれを掘り起こす作業です。
     </p>
-    <div class="quote-block">
-      <p>「経験そのものが人を成長させるのではない。<br>経験を内省することが人を成長させる。」</p>
-    </div>
     <p>
       また内省は、<strong>反省とは全く別物</strong>です。
       反省が「悪かった点を責めること」だとすれば、内省は「感情と事実の両方に目を向け、自分の価値観を発見すること」。
@@ -824,7 +819,7 @@
 <div class="why-bg">
   <section class="section" id="why">
     <div class="sec-label reveal">02 — Why now</div>
-    <h2 class="sec-h2 reveal" style="color: var(--white);">なぜ今の時代に、<br>内省が必要なのか。</h2>
+    <h2 class="sec-h2 reveal" style="color: var(--white);">なぜ今の時代に、内省が必要なのか。</h2>
     <p class="sec-lead reveal" style="color: #7aa5ac;">ソーシャルノイズがかつてないほど大きい時代。自分の声が聞こえにくくなっている、その構造的な理由があります。</p>
 
     <div class="noise-cards">
@@ -850,7 +845,7 @@
 <!-- 03 EFFECTS -->
 <section class="section" id="effects">
   <div class="sec-label reveal">03 — Effects</div>
-  <h2 class="sec-h2 reveal">内省がもたらす、<br>4つの変化。</h2>
+  <h2 class="sec-h2 reveal">内省がもたらす、4つの変化。</h2>
   <p class="sec-lead reveal">気持ちがスッキリするだけではありません。内省は、意思決定・パフォーマンス・幸福度・収入に至るまで、具体的な成果をもたらすことが研究で示されています。</p>
   <p class="reveal" style="font-size:13px;color:var(--text-muted,#6b7280);max-width:800px;margin:-16px auto 32px;text-align:center;">※ 以下はいずれも主に欧米・グローバルでの研究知見をもとにしています。</p>
 
@@ -861,6 +856,10 @@
       </div>
       <h3>価値観と判断基準が<br>明確になる</h3>
       <p>情報とタスクが際限なく追加され続ける時代に、「捨てていいもの」が分かる。自分の大切にしたいことが言語化されると、迷いと消耗が減る。</p>
+      <div class="effect-stat">
+        <span class="effect-stat-num">+42%</span>
+        <span class="effect-stat-label">目標・価値観を言語化した人の<br>目標達成率（Dominican University, Gail Matthews研究）</span>
+      </div>
     </div>
     <div class="effect-card reveal reveal-d1">
       <div class="effect-icon">
@@ -931,8 +930,8 @@
 
 <!-- 05 TIPS -->
 <section class="section" id="tips">
-  <div class="sec-label reveal">05 — How to reflect</div>
-  <h2 class="sec-h2 reveal">内省を続けるための、<br>3つのコツ。</h2>
+  <div class="sec-label reveal">04 — How to reflect</div>
+  <h2 class="sec-h2 reveal">内省を続けるための、3つのコツ。</h2>
   <p class="sec-lead reveal">内省は才能ではなく、習慣です。やり方を知れば、誰でも身につけられます。</p>
 
   <div class="tips-grid">
@@ -987,54 +986,38 @@
   </div>
 </section>
 
-<!-- 06 CAREER PARTNER -->
+<!-- 05 CAREER PARTNER -->
 <div class="cp-section" id="support">
   <section class="section">
-    <div class="cp-grid">
-      <div>
-        <div class="cp-label reveal">06 — What we do</div>
-        <h2 class="cp-h2 reveal">
-          自分が自分を<br>大切にできる状態へ。
-        </h2>
-        <p class="cp-body reveal">
-          内省の習慣を通じて、あなた自身があなたの羅針盤を育てていく。
-          自己決定と繋がりから生まれる持続的な幸福感を育てること。
-          それが、私たちがあなたに届けたいものです。
-        </p>
+    <div class="cp-label reveal">05 — What we do</div>
+    <h2 class="cp-h2 reveal">自分が自分を大切にできる状態へ。</h2>
+    <p class="cp-body reveal">
+      内省の習慣を通じて、あなた自身があなたの羅針盤を育てていく。
+      自己決定と繋がりから生まれる持続的な幸福感を育てること。
+      それが、私たちがあなたに届けたいものです。
+    </p>
+    <div class="cp-features reveal reveal-d1">
+      <div class="cp-feat">
+        <h4>キャリフレ（内省伴走プロダクト）</h4>
+        <p>職業満足度診断・内省ログ・WCM整理など、自分一人で内省を深めるためのデジタルツール。まずは無料で始められます。</p>
       </div>
-      <div class="cp-features reveal reveal-d1">
-        <div class="cp-feat">
-          <h4>キャリフレ（内省伴走プロダクト）</h4>
-          <p>職業満足度診断・内省ログ・WCM整理など、自分一人で内省を深めるためのデジタルツール。まずは無料で始められます。</p>
-        </div>
-        <div class="cp-feat">
-          <h4>キャリフレセッション（ヒトによるカウンセリング）</h4>
-          <p>一人で堂々巡りになったとき、詰まりを感じたときに、プロのカウンセラーが伴走します。自分が必要だと感じた時だけ対話を行うことが出来ます。</p>
-        </div>
+      <div class="cp-feat">
+        <h4>キャリフレセッション（ヒトによるカウンセリング）</h4>
+        <p>一人で堂々巡りになったとき、詰まりを感じたときに、プロのカウンセラーが伴走します。自分が必要だと感じた時だけ対話を行うことが出来ます。</p>
       </div>
-      <div class="cp-cta-wrap reveal" style="margin-top:40px;text-align:center;">
-        <a href="https://carefle.vercel.app/" target="_blank" class="btn-white" style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;">
-          自分との対話をはじめる
-          <span style="font-size:10px;opacity:0.78;">無料で2週間体験する</span>
-        </a>
-      </div>
+    </div>
+    <div class="cp-cta-wrap reveal" style="margin-top:40px;text-align:center;">
+      <a href="https://carefle.vercel.app/" target="_blank" class="btn-white" style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;">
+        自分との対話をはじめる
+        <span style="font-size:10px;opacity:0.78;">無料で2週間体験する</span>
+      </a>
     </div>
   </section>
 </div>
 
-<!-- CTA -->
-<div style="background:#0A3A44;padding:80px 8vw;text-align:center;position:relative;overflow:hidden;">
-  <h2 style="font-family:'Noto Serif JP',serif;font-weight:300;font-size:clamp(22px,3vw,36px);color:white;line-height:1.8;margin-bottom:16px;">ありたい自分は、<br>立ち止まった先に、いる。</h2>
-  <p style="font-size:13px;color:#7EC8D8;margin-bottom:36px;line-height:2;">内省を重ねるうちに、自分の心の声が少しずつ聞こえてくる。</p>
-  <a href="https://carefle.vercel.app/" target="_blank" style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;background:#2A9BB0;color:white;font-size:13px;letter-spacing:0.12em;padding:16px 36px;border-radius:2px;text-decoration:none;">
-    自分との対話をはじめる
-    <span style="font-size:10px;opacity:0.78;">無料で2週間体験する</span>
-  </a>
-</div>
-
 <!-- FOOTER -->
 <footer style="background:#061820;padding:28px 8vw;font-size:11px;color:rgba(126,200,216,0.3);letter-spacing:0.1em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
-  <span>© 2026 キャリアパートナー / Career Partner</span>
+  <span>© 2026 キャリアパートナー / Career Partner<br><small style="font-size:10px;letter-spacing:0.05em;color:rgba(126,200,216,0.2);">本サービスはキャリア相談・自己理解支援を目的としたプログラムです。医療・法律・労務上の助言には該当しません。</small></span>
   <div style="display:flex;gap:20px;flex-wrap:wrap;">
     <a href="index.html" style="color:rgba(126,200,216,0.3);text-decoration:none;">キャリアパートナーとは</a>
     <a href="reflection.html" style="color:rgba(126,200,216,0.3);text-decoration:none;">内省（リフレクション）とは</a>
