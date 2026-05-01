@@ -89,8 +89,9 @@ select.form-input{cursor:pointer;-webkit-appearance:none;appearance:none;backgro
 .cta-title{font-family:'Noto Serif JP',serif;font-weight:300;font-size:clamp(20px,3vw,32px);color:white;line-height:1.8;margin-bottom:12px;position:relative;z-index:1;}
 .cta-sub{font-size:13px;color:var(--accent-light);margin-bottom:36px;position:relative;z-index:1;line-height:2;}
 .cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
-.cta-btn-primary{background:var(--accent);color:white;font-size:13px;letter-spacing:0.1em;padding:14px 32px;border-radius:2px;text-decoration:none;transition:all 0.3s;}
+.cta-btn-primary{background:var(--accent);color:white;font-size:13px;letter-spacing:0.1em;padding:14px 32px;border-radius:2px;text-decoration:none;transition:all 0.3s;display:inline-flex;flex-direction:column;align-items:center;gap:4px;}
 .cta-btn-primary:hover{background:var(--accent-light);}
+.btn-sub{font-size:10px;letter-spacing:0.06em;opacity:0.78;font-weight:400;}
 
 /* フッター */
 footer{background:var(--deep);padding:40px 8vw;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:20px;border-top:1px solid rgba(126,200,216,0.1);}
@@ -111,9 +112,10 @@ footer span{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.05em;lin
 
 <!-- ナビゲーション -->
 <nav>
-  <a href="index.html" class="nav-logo">CAREER PARTNER</a>
+  <a href="index.html" class="nav-logo">キャリアパートナー</a>
   <div class="nav-links">
     <a href="index.html" class="nav-link">キャリアパートナーとは</a>
+    <a href="reflection.html" class="nav-link">内省（リフレクション）とは</a>
     <a href="pricing.html" class="nav-link">料金</a>
     <a href="faq.html" class="nav-link">よくある質問</a>
     <a href="contact.html" class="nav-link active">お問い合わせ</a>
@@ -126,6 +128,7 @@ footer span{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.05em;lin
 
 <div id="navMobile" class="nav-mobile">
   <a href="index.html#top">キャリアパートナーとは</a>
+  <a href="reflection.html">内省（リフレクション）とは</a>
   <a href="pricing.html">料金</a>
   <a href="faq.html">よくある質問</a>
   <a href="contact.html">お問い合わせ</a>
@@ -202,7 +205,10 @@ footer span{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.05em;lin
   <h2 class="cta-title">まずは、キャリフレで<br>自分と向き合ってみる。</h2>
   <p class="cta-sub">無料で始められます。答えを急がなくていい。</p>
   <div class="cta-btns">
-    <a class="cta-btn-primary" href="https://carefle.vercel.app/" target="_blank">まず無料診断してみる</a>
+    <a class="cta-btn-primary" href="https://carefle.vercel.app/" target="_blank">
+      自分との対話をはじめる
+      <span class="btn-sub">無料で2週間体験する</span>
+    </a>
   </div>
 </div>
 
@@ -210,6 +216,7 @@ footer span{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.05em;lin
   <span>© 2026 キャリアパートナー / Career Partner<br><small style="font-size:10px;letter-spacing:0.05em;color:rgba(255,255,255,0.3);">本サービスはキャリア相談・自己理解支援を目的としたプログラムです。医療・法律・労務上の助言には該当しません。</small></span>
   <div class="footer-links">
     <a href="index.html#top">キャリアパートナーとは</a>
+    <a href="reflection.html">内省（リフレクション）とは</a>
     <a href="pricing.html">料金</a>
     <a href="faq.html">よくある質問</a>
     <a href="contact.html">お問い合わせ</a>

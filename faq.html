@@ -89,8 +89,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 8vw;display:fle
 .cta-title{font-family:'Noto Serif JP',serif;font-weight:300;font-size:clamp(22px,3.5vw,36px);color:white;line-height:1.8;margin-bottom:12px;position:relative;z-index:1;}
 .cta-sub{font-size:13px;color:var(--accent-light);margin-bottom:44px;position:relative;z-index:1;line-height:2;}
 .cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
-.cta-btn-primary{background:var(--accent);color:white;font-size:13px;letter-spacing:0.1em;padding:14px 32px;border-radius:2px;text-decoration:none;transition:all 0.3s;}
+.cta-btn-primary{background:var(--accent);color:white;font-size:13px;letter-spacing:0.1em;padding:14px 32px;border-radius:2px;text-decoration:none;transition:all 0.3s;display:inline-flex;flex-direction:column;align-items:center;gap:4px;}
 .cta-btn-primary:hover{background:var(--accent-light);}
+.btn-sub{font-size:10px;letter-spacing:0.06em;opacity:0.78;font-weight:400;}
 .cta-btn-secondary{border:1px solid rgba(126,200,216,0.5);color:var(--accent-light);font-size:13px;letter-spacing:0.1em;padding:14px 32px;border-radius:2px;text-decoration:none;transition:all 0.3s;}
 .cta-btn-secondary:hover{border-color:var(--accent-light);background:rgba(42,155,176,0.1);}
 
@@ -119,6 +120,7 @@ footer{background:#061820;padding:28px 8vw;font-size:11px;color:rgba(126,200,216
   <a class="nav-logo" href="index.html">キャリアパートナー</a>
   <div class="nav-links">
     <a class="nav-link" href="index.html#top">キャリアパートナーとは</a>
+    <a class="nav-link" href="reflection.html">内省（リフレクション）とは</a>
     <a class="nav-link" href="pricing.html">料金</a>
     <a class="nav-link active" href="faq.html">よくある質問</a>
     <a class="nav-link" href="https://careerpartner.jp/" target="_blank">運営会社</a>
@@ -130,6 +132,7 @@ footer{background:#061820;padding:28px 8vw;font-size:11px;color:rgba(126,200,216
 </nav>
 <div class="nav-mobile" id="navMobile">
   <a href="index.html#top">キャリアパートナーとは</a>
+  <a href="reflection.html">内省（リフレクション）とは</a>
   <a href="pricing.html">料金</a>
   <a href="faq.html">よくある質問</a>
   <a href="https://careerpartner.jp/" target="_blank">運営会社</a>
@@ -280,6 +283,25 @@ footer{background:#061820;padding:28px 8vw;font-size:11px;color:rgba(126,200,216
     <div class="faq-item" onclick="toggleFaq(this)">
       <div class="faq-q">
         <div class="faq-q-mark">Q</div>
+        <div class="faq-q-text">内省（リフレクション）ってどんな効果があるんですか？</div>
+        <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">
+        内省とは、自分の感情・経験・価値観に意識的に目を向けるプロセスです。キャリアパートナーでは、この習慣を日常に組み込むことで以下のような変化をサポートしています。<br><br>
+        <strong>① 「何となくモヤモヤ」が言語化される</strong><br>
+        漠然とした不満や違和感を言葉にできるようになると、問題の輪郭がはっきりし、次のアクションを考えやすくなります。<br><br>
+        <strong>② 自分の価値観・判断基準が明確になる</strong><br>
+        積み重ねた内省ログから「自分が大切にしていること」が見えてきます。転職・キャリア・ライフスタイルの意思決定の精度が上がります。<br><br>
+        <strong>③ 「やらされている」感覚が減る</strong><br>
+        自己決定感が高まることで、仕事や日々の取り組みに自分ごとのエネルギーが生まれやすくなります。<br><br>
+        研究知見としても、内省習慣は生産性・幸福度・長期的なキャリア成果に正の影響を与えることが示されています（HBS / HEC Paris研究など）。<br><br>
+        <a href="reflection.html">→ 内省（リフレクション）とは何か、詳しく読む</a>
+      </div></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <div class="faq-q-mark">Q</div>
         <div class="faq-q-text">カウンセラーはどんな人ですか？</div>
         <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
@@ -309,7 +331,10 @@ footer{background:#061820;padding:28px 8vw;font-size:11px;color:rgba(126,200,216
   <h2 class="cta-title">ありたい自分は、<br>立ち止まった先にいる。</h2>
   <p class="cta-sub">内省を重ねるうちに、思考や気持ちのパターンが少しずつ見えてくる。<br>自分の心の声を知り、整え、より豊かな選択が出来る。そんな習慣を一緒に。</p>
   <div class="cta-btns">
-    <a class="cta-btn-primary" href="https://carefle.vercel.app/" target="_blank">まず無料診断してみる</a>
+    <a class="cta-btn-primary" href="https://carefle.vercel.app/" target="_blank">
+      自分との対話をはじめる
+      <span class="btn-sub">無料で2週間体験する</span>
+    </a>
   </div>
 </div>
 
@@ -317,6 +342,7 @@ footer{background:#061820;padding:28px 8vw;font-size:11px;color:rgba(126,200,216
   <span>© 2026 キャリアパートナー / Career Partner<br><small style="font-size:10px;letter-spacing:0.05em;color:var(--text-light);">本サービスはキャリア相談・自己理解支援を目的としたプログラムです。医療・法律・労務上の助言には該当しません。</small></span>
   <div class="footer-links">
     <a href="index.html#top">キャリアパートナーとは</a>
+    <a href="reflection.html">内省（リフレクション）とは</a>
     <a href="pricing.html">料金</a>
     <a href="faq.html">よくある質問</a>
     <a href="contact.html">お問い合わせ</a>
