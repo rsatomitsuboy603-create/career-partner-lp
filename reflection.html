@@ -35,44 +35,23 @@
   }
 
   /* ──────────── HEADER / NAV ──────────── */
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--cream);
-    border-bottom: 0.5px solid var(--rule);
-    padding: 0 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-  }
-  .logo {
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--ink);
-    text-decoration: none;
-    letter-spacing: 0.03em;
-  }
-  .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
-  .nav-links a {
-    font-size: 0.78rem;
-    letter-spacing: 0.05em;
-    color: var(--ink-mid);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--green); }
-  .nav-cta {
-    background: var(--green) !important;
-    color: var(--white) !important;
-    padding: 0.45rem 1rem !important;
-    border: 1px solid var(--green) !important;
-    border-radius: 4px;
-    letter-spacing: 0.03em !important;
-  }
-  .nav-cta:hover { opacity: 0.85; color: var(--white) !important; }
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 8vw;display:flex;justify-content:space-between;align-items:center;background:rgba(238,246,247,0.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--rule);}
+  .nav-logo{font-family:'Noto Sans JP',sans-serif;font-size:14px;font-weight:400;color:var(--ink);letter-spacing:0.1em;text-decoration:none;white-space:nowrap;}
+  .nav-links{display:flex;gap:24px;align-items:center;}
+  .nav-link{font-size:12px;letter-spacing:0.06em;color:var(--ink-mid);text-decoration:none;transition:color 0.2s;white-space:nowrap;}
+  .nav-link:hover,.nav-link.active{color:var(--green);}
+  .nav-cta{font-size:11px;letter-spacing:0.12em;color:var(--green);border:1px solid var(--green);padding:8px 18px;border-radius:20px;text-decoration:none;transition:all 0.3s;white-space:nowrap;}
+  .nav-cta:hover{background:var(--green);color:white;}
+  .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+  .nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--green);transition:all 0.3s;}
+  .nav-mobile{display:none;position:fixed;top:57px;left:0;right:0;background:rgba(238,246,247,0.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--rule);padding:20px 8vw;z-index:99;flex-direction:column;gap:0;}
+  .nav-mobile.open{display:flex;}
+  .nav-mobile a{font-size:14px;color:var(--ink-mid);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule);letter-spacing:0.06em;transition:color 0.2s;}
+  .nav-mobile a:last-child{border-bottom:none;}
+  .nav-mobile a:hover{color:var(--green);}
+  .nav-mobile-cta{background:var(--green);color:white!important;padding:14px 0;text-align:center;border-radius:4px;margin-top:12px;letter-spacing:0.1em!important;}
+  @media(max-width:900px){.nav-links{display:none;}.nav-hamburger{display:flex;}}
+  @media(max-width:600px){nav{padding:14px 5vw;}}
 
   /* ──────────── HERO ──────────── */
   .hero {
@@ -638,6 +617,7 @@
     margin-top: 3rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1rem;
   }
   .btn-white {
@@ -713,12 +693,11 @@
 
   /* ──────────── RESPONSIVE ──────────── */
   @media (max-width: 768px) {
-    .site-header { padding: 0 1.5rem; }
-    .hero { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem 3rem; }
     .hero-bg::after { background: rgba(238,246,247,0.86); }
     .hero-text { padding: 0 6vw; }
     .hero-title { white-space: normal; }
     .hero-sub { white-space: normal; }
+    .sec-lead { white-space: normal !important; }
     .section { padding: 4rem 1.5rem; }
     .what-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .noise-cards { grid-template-columns: 1fr; }
@@ -737,19 +716,28 @@
 <body>
 
 <!-- HEADER -->
-<header class="site-header">
-  <a href="index.html" class="logo">キャリアパートナー</a>
-  <nav>
-    <ul class="nav-links">
-      <li><a href="index.html">キャリアパートナーとは</a></li>
-      <li><a href="reflection.html" style="color:var(--green);">内省（リフレクション）とは</a></li>
-      <li><a href="pricing.html">料金</a></li>
-      <li><a href="faq.html">よくある質問</a></li>
-      <li><a href="https://careerpartner.jp/">運営会社</a></li>
-      <li><a href="https://carefle.vercel.app/" class="nav-cta">▶ まず無料診断してみる</a></li>
-    </ul>
-  </nav>
-</header>
+<nav>
+  <a href="index.html" class="nav-logo">キャリアパートナー</a>
+  <div class="nav-links">
+    <a class="nav-link" href="index.html">キャリアパートナーとは</a>
+    <a class="nav-link active" href="reflection.html">内省（リフレクション）とは</a>
+    <a class="nav-link" href="pricing.html">料金</a>
+    <a class="nav-link" href="faq.html">よくある質問</a>
+    <a class="nav-link" href="https://careerpartner.jp/" target="_blank">運営会社</a>
+    <a class="nav-cta" href="https://carefle.vercel.app/" target="_blank">▶ まず無料診断してみる</a>
+  </div>
+  <div class="nav-hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">キャリアパートナーとは</a>
+  <a href="reflection.html">内省（リフレクション）とは</a>
+  <a href="pricing.html">料金</a>
+  <a href="faq.html">よくある質問</a>
+  <a href="https://careerpartner.jp/" target="_blank">運営会社</a>
+  <a href="https://carefle.vercel.app/" target="_blank" class="nav-mobile-cta">▶ まず無料診断してみる</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -776,11 +764,11 @@
 <section class="section" id="what">
   <div class="sec-label reveal">01 — What is reflection</div>
   <h2 class="sec-h2 reveal">内省（リフレクション）とは、自分の心の声を聴く技術。</h2>
-  <div class="quote-block reveal" style="max-width:720px;margin:1.5rem 0 2rem;">
-    <p>「経験そのものが人を成長させるのではない。経験を内省することが人を成長させる。」</p>
+  <div class="quote-block reveal" style="margin:1.5rem 0 2rem;">
+    <p>経験そのものが人を成長させるのではない。<br>経験を内省することが人を成長させる。</p>
     <p style="font-size:0.72rem;color:var(--ink-light);margin-top:0.6rem;font-family:'Noto Sans JP',sans-serif;">— 教育哲学者 ジョン・デューイ</p>
   </div>
-  <p class="sec-lead reveal">単なる「振り返り」ではありません。経験に意味を与え、自分の価値観と判断軸を育てる、知的な習慣です。</p>
+  <p class="sec-lead reveal" style="white-space:nowrap;">単なる「振り返り」ではありません。経験に意味を与え、自分の価値観と判断軸を育てる、知的な習慣です。</p>
 
   <div class="what-main reveal" style="max-width:800px;margin:0 0 48px;">
     <p>
@@ -820,7 +808,7 @@
   <section class="section" id="why">
     <div class="sec-label reveal">02 — Why now</div>
     <h2 class="sec-h2 reveal" style="color: var(--white);">なぜ今の時代に、内省が必要なのか。</h2>
-    <p class="sec-lead reveal" style="color: #7aa5ac;">ソーシャルノイズがかつてないほど大きい時代。自分の声が聞こえにくくなっている、その構造的な理由があります。</p>
+    <p class="sec-lead reveal" style="color: #7aa5ac;white-space:nowrap;">ソーシャルノイズがかつてないほど大きい時代。自分の声が聞こえにくくなっている、その構造的な理由があります。</p>
 
     <div class="noise-cards">
       <div class="noise-card reveal">
@@ -846,7 +834,7 @@
 <section class="section" id="effects">
   <div class="sec-label reveal">03 — Effects</div>
   <h2 class="sec-h2 reveal">内省がもたらす、4つの変化。</h2>
-  <p class="sec-lead reveal">気持ちがスッキリするだけではありません。内省は、意思決定・パフォーマンス・幸福度・収入に至るまで、具体的な成果をもたらすことが研究で示されています。</p>
+  <p class="sec-lead reveal" style="white-space:nowrap;">気持ちがスッキリするだけではありません。<br>内省は、意思決定・パフォーマンス・幸福度・収入に至るまで、具体的な成果をもたらすことが研究で示されています。</p>
   <p class="reveal" style="font-size:13px;color:var(--text-muted,#6b7280);max-width:800px;margin:-16px auto 32px;text-align:center;">※ 以下はいずれも主に欧米・グローバルでの研究知見をもとにしています。</p>
 
   <div class="effects-grid">
@@ -992,8 +980,7 @@
     <div class="cp-label reveal">05 — What we do</div>
     <h2 class="cp-h2 reveal">自分が自分を大切にできる状態へ。</h2>
     <p class="cp-body reveal">
-      内省の習慣を通じて、あなた自身があなたの羅針盤を育てていく。
-      自己決定と繋がりから生まれる持続的な幸福感を育てること。
+      内省の習慣を通じて、あなた自身があなたの羅針盤を育てていく。自己決定と繋がりから生まれる持続的な幸福感を育てること。<br>
       それが、私たちがあなたに届けたいものです。
     </p>
     <div class="cp-features reveal reveal-d1">
@@ -1029,6 +1016,7 @@
 </footer>
 
 <script>
+function toggleNav(){document.getElementById('navMobile').classList.toggle('open');}
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
