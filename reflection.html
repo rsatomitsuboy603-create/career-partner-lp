@@ -693,13 +693,14 @@
 
   /* ──────────── RESPONSIVE ──────────── */
   @media (max-width: 768px) {
-    .hero-bg::after { background: rgba(238,246,247,0.86); }
+    .hero-bg::after { background: linear-gradient(180deg,rgba(238,246,247,0.93) 0%,rgba(238,246,247,0.88) 55%,rgba(238,246,247,0.60) 80%,rgba(238,246,247,0.25) 100%); }
     .hero-text { padding: 0 6vw; }
     .hero-title { white-space: normal; }
     .hero-sub { white-space: normal; }
     .sec-lead { white-space: normal !important; }
     .section { padding: 4rem 1.5rem; }
     .what-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .type-cards { grid-template-columns: 1fr !important; max-width: 100% !important; }
     .noise-cards { grid-template-columns: 1fr; }
     .effects-grid { grid-template-columns: 1fr; }
     .tips-grid { grid-template-columns: 1fr; }

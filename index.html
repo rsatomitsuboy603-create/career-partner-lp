@@ -58,7 +58,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 8vw;display:fle
 @keyframes underlineExpand{to{transform:scaleX(1);}}
 .hero-divider{width:1px;height:40px;background:var(--accent-light);margin:36px 0;opacity:0;transform:scaleY(0);transform-origin:top;animation:scaleIn 0.6s ease 1.6s forwards;}
 @keyframes scaleIn{to{opacity:1;transform:scaleY(1);}}
-.hero-sub{font-size:17px;color:var(--text-mid);line-height:2.2;opacity:0;animation:fadeUp 1s ease 1.8s forwards;}
+.hero-sub{font-size:17px;color:var(--text-mid);line-height:2.2;opacity:0;animation:fadeUp 1s ease 1.8s forwards;white-space:nowrap;}
 .hero-btns{display:flex;gap:14px;margin-top:48px;flex-wrap:wrap;opacity:0;animation:fadeUp 1s ease 2.2s forwards;}
 .btn-primary{background:var(--accent);color:white;font-size:13px;letter-spacing:0.1em;padding:14px 28px;border-radius:2px;text-decoration:none;transition:background 0.3s,transform 0.2s;text-align:center;display:inline-flex;flex-direction:column;align-items:center;gap:4px;}
 .btn-primary:hover{background:var(--mid);transform:translateY(-2px);}
@@ -316,10 +316,10 @@ footer{background:#061820;padding:32px 8vw;font-size:11px;color:rgba(126,200,216
 /* レスポンシブ */
 @media(max-width:900px){
   .hero{min-height:100vh;padding:100px 0 60px;}
-  .hero-bg::after{background:rgba(240,248,250,0.86);}
+  .hero-bg::after{background:linear-gradient(180deg,rgba(240,248,250,0.93) 0%,rgba(240,248,250,0.88) 55%,rgba(240,248,250,0.60) 80%,rgba(240,248,250,0.25) 100%);}
   .hero-text{padding:0 6vw;}
   .hero-title{white-space:normal;font-size:clamp(24px,7vw,36px);}
-  .hero-sub{white-space:normal;}
+  .hero-sub{white-space:normal!important;font-size:15px;}
   .cycle-stage{grid-template-columns:1fr;}
   .cycle-center{display:none;}
   .cycle-outcome-cards{grid-template-columns:1fr;}
@@ -381,7 +381,7 @@ footer{background:#061820;padding:32px 8vw;font-size:11px;color:rgba(126,200,216
       ありたい自分は、<br>立ち止まった先に、<em>いる</em>。
     </h1>
     <div class="hero-divider"></div>
-    <p class="hero-sub" style="white-space:nowrap;">
+    <p class="hero-sub">
       立ち止まることを、いつから避けるようになっただろう。<br>
       目の前の仕事はちゃんとこなしている。<br>
       でも、このままでいいのかは、考えないままになっている。<br>
