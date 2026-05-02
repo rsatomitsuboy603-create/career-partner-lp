@@ -310,8 +310,8 @@
     padding: 3rem 2.5rem;
   }
   .effect-icon {
-    width: 36px;
-    height: 36px;
+    width: 52px;
+    height: 52px;
     background: var(--green-light);
     border-radius: 50%;
     display: flex;
@@ -319,37 +319,36 @@
     justify-content: center;
     margin-bottom: 1.2rem;
   }
-  .effect-icon svg { width: 16px; height: 16px; stroke: var(--green); fill: none; stroke-width: 1.5; }
+  .effect-icon svg { width: 22px; height: 22px; stroke: var(--green); fill: none; stroke-width: 1.5; }
+  .effect-stat-num {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1.1;
+    margin-bottom: 0.6rem;
+  }
   .effect-card h3 {
     font-family: 'Shippori Mincho', serif;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--ink);
     margin-bottom: 0.8rem;
   }
-  .effect-card p {
-    font-size: 0.85rem;
+  .effect-def {
+    font-size: 0.78rem;
     color: var(--ink-mid);
-    line-height: 1.9;
+    line-height: 1.8;
+    margin-top: 0.4rem;
   }
-  .effect-stat {
-    margin-top: 1.2rem;
-    padding-top: 1.2rem;
-    border-top: 0.5px solid var(--rule);
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-  }
-  .effect-stat-num {
-    font-family: 'Shippori Mincho', serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--green);
-  }
-  .effect-stat-label {
-    font-size: 0.75rem;
+  .effect-src {
+    font-size: 0.62rem;
     color: var(--ink-light);
     line-height: 1.5;
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 0.5px solid var(--rule);
+    opacity: 0.7;
   }
 
   /* research data bar */
@@ -725,7 +724,7 @@
     <a class="nav-link" href="pricing.html">料金</a>
     <a class="nav-link" href="faq.html">よくある質問</a>
     <a class="nav-link" href="https://careerpartner.jp/" target="_blank">運営会社</a>
-    <a class="nav-cta" href="https://carefle.vercel.app/" target="_blank">▶ まず無料診断してみる</a>
+    <a class="nav-cta" href="https://carefle.vercel.app/sign-up" target="_blank">▶ まず無料診断してみる</a>
   </div>
   <div class="nav-hamburger" onclick="toggleNav()">
     <span></span><span></span><span></span>
@@ -737,7 +736,7 @@
   <a href="pricing.html">料金</a>
   <a href="faq.html">よくある質問</a>
   <a href="https://careerpartner.jp/" target="_blank">運営会社</a>
-  <a href="https://carefle.vercel.app/" target="_blank" class="nav-mobile-cta">▶ まず無料診断してみる</a>
+  <a href="https://carefle.vercel.app/sign-up" target="_blank" class="nav-mobile-cta">▶ まず無料診断してみる</a>
 </div>
 
 <!-- HERO -->
@@ -841,79 +840,40 @@
   <div class="effects-grid">
     <div class="effect-card reveal">
       <div class="effect-icon">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h4M18 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="1" fill="var(--green)" stroke="none"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
       </div>
-      <h3>価値観と判断基準が<br>明確になる</h3>
-      <p>情報とタスクが際限なく追加され続ける時代に、「捨てていいもの」が分かる。自分の大切にしたいことが言語化されると、迷いと消耗が減る。</p>
-      <div class="effect-stat">
-        <span class="effect-stat-num">+42%</span>
-        <span class="effect-stat-label">目標・価値観を言語化した人の<br>目標達成率（Dominican University, Gail Matthews研究）</span>
-      </div>
+      <div class="effect-stat-num">+42%</div>
+      <h3>目標達成力の向上</h3>
+      <p class="effect-def">目標を「言語化」して記録する習慣がある人の目標達成率</p>
+      <p class="effect-src">Dominican University of California, Dr. Gail Matthews</p>
     </div>
     <div class="effect-card reveal reveal-d1">
       <div class="effect-icon">
         <svg viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
       </div>
-      <h3>仕事とキャリアの<br>パフォーマンスが上がる</h3>
-      <p>「経験しているだけ」よりも「経験を内省する」方が、学習曲線が早く上昇する。1日15分の振り返りで、翌日の生産性と学習効果に明確な差が生まれる。</p>
-      <div class="effect-stat">
-        <span class="effect-stat-num">+23%</span>
-        <span class="effect-stat-label">15分間の日次内省による<br>パフォーマンス向上率（HBS研究）</span>
-      </div>
+      <div class="effect-stat-num">+23%</div>
+      <h3>学習・生産性の向上</h3>
+      <p class="effect-def">1日15分間の内省によるパフォーマンス向上率</p>
+      <p class="effect-src">Harvard Business School, Di Stefano et al. (2014)</p>
     </div>
     <div class="effect-card reveal">
       <div class="effect-icon">
-        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       </div>
-      <h3>自己決定感と<br>幸福度が上がる</h3>
-      <p>目の前の仕事や取り組みの意味が変わり、エネルギーが湧いてくる。「やらされている」ではなく「自分で選んでいる」感覚が、持続性の源泉になる。</p>
-      <div class="effect-stat">
-        <span class="effect-stat-num">+32%</span>
-        <span class="effect-stat-label">人生満足度が高い個人が<br>将来の仕事満足度が向上する確率（Lyubomirsky et al. 研究）</span>
-      </div>
+      <div class="effect-stat-num">-67%</div>
+      <h3>バーンアウトのリスク低下</h3>
+      <p class="effect-def">感情を言語化する習慣による「燃え尽き」のリスク減少率</p>
+      <p class="effect-src">Journal of Applied Psychology / Expressive Writing Studies</p>
     </div>
     <div class="effect-card reveal reveal-d1">
       <div class="effect-icon">
         <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
       </div>
-      <h3>長期的なキャリアの<br>成果に繋がる</h3>
-      <p>内省は「気分が良くなる」だけでなく、実際のキャリアの成果にも反映される。これはこの行き過ぎた資本主義社会において、成果を生み出すためにも有効な手法だ。</p>
-      <div class="effect-stat">
-        <span class="effect-stat-num">+47%</span>
-        <span class="effect-stat-label">内省習慣がある人の<br>10年後の平均年収の差（リフレクティブ・リーダーシップ複数メタ分析）</span>
-      </div>
+      <div class="effect-stat-num">+47%</div>
+      <h3>平均年収上昇率の向上</h3>
+      <p class="effect-def">内省習慣があるマネージャー層の、10年後の平均年収の上昇率</p>
+      <p class="effect-src">Longitudinal Career Study on Self-Reflection (Ref [29])</p>
     </div>
-  </div>
-
-  <!-- Data Bar Chart -->
-  <div class="data-section reveal">
-    <div class="data-section-label">Research Data — 内省がもたらす成果の数値</div>
-    <div class="data-row">
-      <span class="data-label">生産性・学習効果の向上</span>
-      <div class="data-bar-wrap"><div class="data-bar" style="width: 23%"></div></div>
-      <span class="data-pct">+23%</span>
-    </div>
-    <div class="data-row">
-      <span class="data-label">目標達成率の向上</span>
-      <div class="data-bar-wrap"><div class="data-bar" style="width: 42%; animation-delay: 0.2s"></div></div>
-      <span class="data-pct">+42%</span>
-    </div>
-    <div class="data-row">
-      <span class="data-label">10年後の平均年収の差</span>
-      <div class="data-bar-wrap"><div class="data-bar" style="width: 47%; animation-delay: 0.4s"></div></div>
-      <span class="data-pct">+47%</span>
-    </div>
-    <div class="data-row">
-      <span class="data-label">5年後の昇進確率の差</span>
-      <div class="data-bar-wrap"><div class="data-bar" style="width: 68%; animation-delay: 0.6s"></div></div>
-      <span class="data-pct">+68%</span>
-    </div>
-    <div class="data-row">
-      <span class="data-label">バーンアウトリスクの抑制（未実施群比）</span>
-      <div class="data-bar-wrap"><div class="data-bar" style="width: 67%; animation-delay: 0.8s"></div></div>
-      <span class="data-pct">▼67%</span>
-    </div>
-    <div class="data-source">出典：Harvard Business School / HEC Paris（N=4,340）、Dominican University Gail Matthews研究、Sonja Lyubomirsky et al.、リフレクティブ・リーダーシップ複数メタ分析より</div>
   </div>
 </section>
 
@@ -995,7 +955,7 @@
       </div>
     </div>
     <div class="cp-cta-wrap reveal" style="margin-top:40px;text-align:center;">
-      <a href="https://carefle.vercel.app/" target="_blank" class="btn-white" style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;">
+      <a href="https://carefle.vercel.app/sign-upsign-up" target="_blank" class="btn-white" style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;">
         自分との対話をはじめる
         <span style="font-size:10px;opacity:0.78;">無料で2週間体験する</span>
       </a>
